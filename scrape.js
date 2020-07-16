@@ -2,7 +2,7 @@ const request = require('request');
 const cheerio = require('cheerio')
 const fs = require('fs');
 
-const URL = 'https://2e.aonprd.com/Monsters.aspx?Letter=All'
+const BASE_URL = 'https://2e.aonprd.com/'
 
 const processAllMonsters = function (error, response, body) {
     if (error) {
@@ -27,4 +27,4 @@ const processAllMonsters = function (error, response, body) {
     }
 }
 
-request(URL, { json: true}, processAllMonsters)
+request(BASE_URL + 'Monsters.aspx?Letter=All', { json: true}, processAllMonsters)
