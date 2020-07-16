@@ -5,31 +5,31 @@ const fs = require('fs')
 const BASE_URL = 'https://2e.aonprd.com/'
 
 const summonableMonster = function (monster) {
-    // For a monster to be summonable, it must be level <= 15 and have one of the summonable traits
-    if (monster.level > 15) {
-        // too high level to summon
-        return false
-    }
-    const traits = [
-        'Animal',
-        'Celestial',
-        'Construct',
-        'Dragon',
-        'Elemental',
-        'Aberration',
-        'Fey',
-        'Fiend',
-        'Giant',
-        'Plant',
-        'Fungus'
-    ]
-    for (let i = 0; i < traits.length; i++) {
-        if (monster.creatureType.includes(traits[i])) {
-            return true
-        }
-    }
-    // It's not one of the summonable types
+  // For a monster to be summonable, it must be level <= 15 and have one of the summonable traits
+  if (monster.level > 15) {
+    // too high level to summon
     return false
+  }
+  const traits = [
+    'Animal',
+    'Celestial',
+    'Construct',
+    'Dragon',
+    'Elemental',
+    'Aberration',
+    'Fey',
+    'Fiend',
+    'Giant',
+    'Plant',
+    'Fungus'
+  ]
+  for (let i = 0; i < traits.length; i++) {
+    if (monster.creatureType.includes(traits[i])) {
+      return true
+    }
+  }
+  // It's not one of the summonable types
+  return false
 }
 
 const getMonsters = function (body) {
@@ -49,7 +49,7 @@ const getMonsters = function (body) {
     }
     // Now check that the monster can be summoned
     if (summonableMonster(monster)) {
-        monsters.push(monster)
+      monsters.push(monster)
     }
   }
   return monsters
