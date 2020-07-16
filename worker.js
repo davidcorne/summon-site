@@ -2,7 +2,7 @@
 const express = require('express')
 const pug = require('pug')
 
-const log = require('./log')
+const log = require('./log').logger
 
 const APP = express()
 APP.set('port', (process.env.PORT || 3000))

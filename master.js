@@ -2,7 +2,7 @@
 const cluster = require('cluster')
 const os = require('os')
 
-const log = require('./log')
+const log = require('./log').logger
 
 const NUMBER_OF_WORKERS = (process.env.WORKERS || os.cpus().length)
 
@@ -35,7 +35,7 @@ const setupCallbacks = function () {
 }
 
 const start = function () {
-  log.info('Logging level: ' + log.level())
+  log.info('Logging level: ' + log.level)
   setupCallbacks()
   startWorkers()
 }
