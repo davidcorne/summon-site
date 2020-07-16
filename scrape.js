@@ -4,12 +4,10 @@ const fs = require('fs');
 
 const BASE_URL = 'https://2e.aonprd.com/'
 
-const processAllMonsters = function (error, response, body) {
-    if (error) {
-        throw error
-    }
+const getMonsters = function (body) {
     const $ = cheerio.load(body)
     const tableRows = $('tr')
+    const monsters = []
     for (let i = 1; i < tableRows.length; ++i) {
         const row = tableRows.get(i)
         const monster = {
@@ -21,9 +19,17 @@ const processAllMonsters = function (error, response, body) {
             'creatureType': row.children[5].children[0].children[0].data,
             'size': row.children[6].children[0].children[0].data,
         }
-        console.log(monster)
-        break
+        monsters.push(monster)
     }
+    return monsters
+}
+
+const processAllMonsters = function (error, response, body) {
+    if (error) {
+        throw error
+    }
+    const monsters = getMonsters(body)
+    console.log(monsters)
 }
 
 request(BASE_URL + 'Monsters.aspx?Letter=All', { json: true}, processAllMonsters)
