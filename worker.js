@@ -3,6 +3,7 @@ const express = require('express')
 const pug = require('pug')
 
 const log = require('./log').logger
+const monsters = require('./data/monsters')
 
 const APP = express()
 APP.set('port', (process.env.PORT || 3000))
@@ -38,7 +39,11 @@ const start = function () {
 
 APP.get('/', function (request, response) {
   onRequest(request)
-  sendTemplate(request, response, 'index', {})
+  sendTemplate(
+    request, response,
+    'index',
+    { monsters: monsters }
+  )
 })
 
 // Note: This should always be the last route, as otherwise it'll override the other routes.

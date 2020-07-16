@@ -2,4 +2,30 @@ extends layout.pug
 
 block content
   h1 Summon Site
-  
+
+  table
+    tr
+      th Spell Level
+      th Monster
+      th Family
+      th Level
+      th Alignment
+      th Type
+      th Size
+    each monster in monsters
+      // e.g. 
+      // "name":"Adult Bronze Dragon",
+      // "url":"https://2e.aonprd.com/Monsters.aspx?ID=146",
+      // "family":"Dragon, Bronze",
+      // "level":"13",
+      // "alignment":"Lawful Good",
+      // "creatureType":"Dragon",
+      // "size":"Huge"
+      tr 
+        td 0
+        td #{monster.name}
+        td #{monster.family}
+        td #{monster.level}
+        td #{monster.alignment}
+        td #{monster.type}
+        td #{monster.size}
