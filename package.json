@@ -4,12 +4,13 @@
   "description": "A site for organising pathfinder 2nd edition summoned creatures",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "standard"
   },
   "author": "David Corne (davidcorne@gmail.com)",
   "license": "MIT",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
-    "request": "^2.88.2"
+    "request": "^2.88.2",
+    "standard": "^14.3.4"
   }
 }
