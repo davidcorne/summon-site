@@ -23,9 +23,10 @@ block content
       // "size":"Huge"
       tr 
         td 0
-        td #{monster.name}
+        td 
+          a(href=monster.url, target="_blank") #{monster.name}
         td #{monster.family}
         td #{monster.level}
         td #{monster.alignment}
-        td #{monster.type}
+        td #{monster.creatureType}
         td #{monster.size}
