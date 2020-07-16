@@ -29,7 +29,12 @@ const processAllMonsters = function (error, response, body) {
         throw error
     }
     const monsters = getMonsters(body)
-    console.log(monsters)
+    fs.writeFile('data/monsters.json', JSON.stringify(monsters), function (error) {
+        if (error) {
+            throw error
+        }
+        console.log('Data written correctly')
+    })
 }
 
 request(BASE_URL + 'Monsters.aspx?Letter=All', { json: true}, processAllMonsters)
