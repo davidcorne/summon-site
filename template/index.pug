@@ -3,6 +3,19 @@ extends layout.pug
 block content
   h1 Summon Site
 
+  div.table-filters
+    select#spell
+      option Summon Animal
+      option Summon Celestial
+      option Summon Construct
+      option Summon Dragon
+    select#level
+      option 1
+      option 2
+      option 3
+      option 4
+    input(type="checkbox")
+    label Show all creatures up to this level
   table
     tr
       th Spell Level
