@@ -12,10 +12,9 @@ const processAllMonsters = function (error, response, body) {
     const tableRows = $('tr')
     for (let i = 1; i < tableRows.length; ++i) {
         const row = tableRows.get(i)
-        console.log(row.children[2].children[0].children[0].data)
         const monster = {
             'name': '',
-            'url': '',
+            'url': BASE_URL + row.children[1].children[0].children[0].attribs.href,
             'family': row.children[2].children[0].children[0].data,
             'level': row.children[3].children[0].children[0].data,
             'alignment': row.children[4].children[0].children[0].data,
