@@ -1,0 +1,4 @@
+node_modules/*
+# I have different settings in these on different machines.
+.npmrc
+package-lock.json
