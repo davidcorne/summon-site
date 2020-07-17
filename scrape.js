@@ -1,3 +1,4 @@
+'use strict'
 const request = require('request')
 const cheerio = require('cheerio')
 const fs = require('fs')
@@ -39,13 +40,13 @@ const getMonsters = function (body) {
   for (let i = 1; i < tableRows.length; ++i) {
     const row = tableRows.get(i)
     const monster = {
-      name: row.children[1].children[0].children[0].children[0].children[0].data,
-      url: BASE_URL + row.children[1].children[0].children[0].attribs.href,
-      family: row.children[2].children[0].children[0].data,
-      level: parseInt(row.children[3].children[0].children[0].data),
-      alignment: row.children[4].children[0].children[0].data,
-      creatureType: row.children[5].children[0].children[0].data,
-      size: row.children[6].children[0].children[0].data
+      name: row.children[1].children[0].children[0].children[0].data,
+      url: BASE_URL + row.children[1].children[0].attribs.href,
+      family: row.children[2].children[0].data,
+      level: parseInt(row.children[3].children[0].data),
+      alignment: row.children[4].children[0].data,
+      creatureType: row.children[5].children[0].data,
+      size: row.children[6].children[0].data
     }
     // Now check that the monster can be summoned
     if (summonableMonster(monster)) {
