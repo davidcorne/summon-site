@@ -61,7 +61,7 @@ describe('Scraper', function () {
         throw error
       }
       const monsters = getMonsters(body)
-      assert.strictEqual(monsters.length, 517)
+      assert.strictEqual(monsters.length, 856)
       done()
     })
   })

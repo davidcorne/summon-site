@@ -5,34 +5,6 @@ const fs = require('fs')
 
 const BASE_URL = 'https://2e.aonprd.com/'
 
-const summonableMonster = function (monster) {
-  // For a monster to be summonable, it must be level <= 15 and have one of the summonable traits
-  if (monster.level > 15) {
-    // too high level to summon
-    return false
-  }
-  const traits = [
-    'Animal',
-    'Celestial',
-    'Construct',
-    'Dragon',
-    'Elemental',
-    'Aberration',
-    'Fey',
-    'Fiend',
-    'Giant',
-    'Plant',
-    'Fungus'
-  ]
-  for (let i = 0; i < traits.length; i++) {
-    if (monster.creatureType.includes(traits[i])) {
-      return true
-    }
-  }
-  // It's not one of the summonable types
-  return false
-}
-
 const getMonsters = function (body) {
   const $ = cheerio.load(body)
   const tableRows = $('tr')
@@ -48,10 +20,7 @@ const getMonsters = function (body) {
       creatureType: row.children[5].children[0].data,
       size: row.children[6].children[0].data
     }
-    // Now check that the monster can be summoned
-    if (summonableMonster(monster)) {
-      monsters.push(monster)
-    }
+    monsters.push(monster)
   }
   return monsters
 }
@@ -61,7 +30,7 @@ const processAllMonsters = function (error, response, body) {
     throw error
   }
   const monsters = getMonsters(body)
-  fs.writeFile('data/monsters.json', JSON.stringify(monsters), function (error) {
+  fs.writeFile('data/all_monsters.json', JSON.stringify(monsters), function (error) {
     if (error) {
       throw error
     }

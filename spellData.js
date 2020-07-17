@@ -82,4 +82,9 @@ const spellData = [
   }
 ]
 
+const instrumentMonster = function (monster) {
+
+}
+
+module.exports.instrumentMonster = instrumentMonster
 module.exports.spellData = spellData
