@@ -69,4 +69,6 @@ const processAllMonsters = function (error, response, body) {
   })
 }
 
-request(BASE_URL + 'Monsters.aspx?Letter=All', { json: true }, processAllMonsters)
+if (require.main === module) {
+  request(BASE_URL + 'Monsters.aspx?Letter=All', { json: true }, processAllMonsters)
+}
