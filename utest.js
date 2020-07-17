@@ -77,6 +77,16 @@ describe('Spell Data', function () {
     assert.strictEqual(animal.summonSpells.length, 1)
     assert.strictEqual(animal.summonSpells[0].spell, 'Summon Animal')
     assert.strictEqual(animal.summonSpells[0].level, 1)
+
+    const elementalDragon = instrumentMonster({
+      level: 12,
+      creatureType: 'Elemental Dragon'
+    })
+    assert.strictEqual(elementalDragon.summonSpells.length, 2)
+    assert.strictEqual(elementalDragon.summonSpells[0].spell, 'Summon Dragon')
+    assert.strictEqual(elementalDragon.summonSpells[0].level, 9)
+    assert.strictEqual(elementalDragon.summonSpells[1].spell, 'Summon Elemental')
+    assert.strictEqual(elementalDragon.summonSpells[1].level, 9)
   })
 })
 
