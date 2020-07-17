@@ -53,8 +53,13 @@ describe('Spell Data', function () {
     assert.strictEqual(summonCelestial.monsterLevelToSpellLevel(1), 5)
   })
   it('Instrument Monster', function () {
-    const unsummonable = instrumentMonster({
+    let unsummonable = instrumentMonster({
       level: 16
+    })
+    assert.isNull(unsummonable)
+    unsummonable = instrumentMonster({
+      level: 12,
+      family: 'Humanoid'
     })
     assert.isNull(unsummonable)
   })
