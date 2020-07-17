@@ -41,7 +41,8 @@ block content
       //   ]
       // }
       tr 
-        td 0
+        // All spell levels should be the same, use the first one.
+        td #{monster.summonSpells[0].level}
         td 
           a(href=monster.url, target="_blank") #{monster.name}
         td #{monster.family}
@@ -49,3 +50,5 @@ block content
         td #{monster.alignment}
         td #{monster.creatureType}
         td #{monster.size}
+        each spell in monster.summonSpells
+          td.dataColumn #{spell.spell}
