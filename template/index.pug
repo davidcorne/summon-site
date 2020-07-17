@@ -2,6 +2,7 @@ extends layout.pug
 
 block scripts
     script(src="/public/resources/index.js")
+    script(src="/public/resources/sorttable.js")
 
 block content
   h1 Summon Site
@@ -25,7 +26,7 @@ block content
       option 10
     input(type="checkbox", onclick="SummonSite.filterTable()")#upToLevelCheck
     label Show all creatures up to this level
-  table#monsterTable
+  table.sortable#monsterTable
     tr
       th Spell Level
       th Monster

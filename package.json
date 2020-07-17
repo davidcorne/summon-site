@@ -20,5 +20,10 @@
     "standard": "^14.3.4",
     "urldecode": "^1.0.1",
     "winston": "^3.3.3"
+  },
+  "standard": {
+    "ignore": [
+      "public/resources/sorttable.js"
+    ]
   }
 }
