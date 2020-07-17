@@ -6,12 +6,12 @@ const assert = chai.assert
 const fs = require('fs')
 
 const spellDataModule = rewire('./spellData.js')
+const instrumentMonstersModule = rewire('./instrumentMonsters.js')
 const scrapeModule = rewire('./scrape.js')
 
 describe('Spell Data', function () {
   const normalSpellLevel = spellDataModule.__get__('normalSpellLevel')
   const spellData = spellDataModule.__get__('spellData')
-  const instrumentMonster = spellDataModule.__get__('instrumentMonster')
   it('Normal Spell Level', function () {
     // Heightened (2nd) Level 1.
     // Heightened (3rd) Level 2.
@@ -52,6 +52,9 @@ describe('Spell Data', function () {
     })
     assert.strictEqual(summonCelestial.monsterLevelToSpellLevel(1), 5)
   })
+})
+describe('Instrument Monsters', function () {
+  const instrumentMonster = instrumentMonstersModule.__get__('instrumentMonster')
   it('Instrument Monster', function () {
     let unsummonable = instrumentMonster({
       level: 16
