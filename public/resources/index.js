@@ -1,10 +1,30 @@
 const SummonSite = {}
 
+SummonSite.levelSelection = function (selectedLevel, displayLowerLevels) {
+  if (selectedLevel === 'All Levels') {
+    return function (spellLevel) {
+      return true
+    }
+  }
+  selectedLevel = parseInt(selectedLevel)
+  if (displayLowerLevels) {
+    return function (spellLevel) {
+      return spellLevel <= selectedLevel
+    }
+  }
+  return function (spellLevel) {
+    return spellLevel === selectedLevel
+  }
+}
+
 SummonSite.filterTable = function () {
   const spellSelector = document.getElementById('spellSelector')
   const selectedSpell = spellSelector.value
   const levelSelector = document.getElementById('levelSelector')
-  const selectedLevel = levelSelector.value === 'All Levels' ? levelSelector.value : parseInt(levelSelector.value)
+  const lowerLevelsCheck = document.getElementById('upToLevelCheck')
+
+  const levelChecker = SummonSite.levelSelection(levelSelector.value, lowerLevelsCheck.checked)
+
   const monsterTable = document.getElementById('monsterTable')
   const table = monsterTable.getElementsByTagName('tr')
   // From 1 to keep the headers
@@ -23,12 +43,10 @@ SummonSite.filterTable = function () {
       }
     }
     // Only check the level, if we're already displaying it
-    if (show && Number.isInteger(selectedLevel)) {
+    if (show) {
       const spellLevelElement = row.getElementsByClassName('spellLevel')[0]
       const spellLevel = parseInt(spellLevelElement.innerHTML)
-      if (spellLevel !== selectedLevel) {
-        show = false
-      }
+      show = levelChecker(spellLevel)
     }
     if (show) {
       row.style.display = ''
