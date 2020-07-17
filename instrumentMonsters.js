@@ -1,3 +1,6 @@
+'use strict'
+const fs = require('fs')
+
 const spellData = require('./spellData')
 
 const instrumentMonster = function (monster) {
@@ -35,4 +38,18 @@ const instrumentMonsters = function (monsters) {
   return instrumentedMonsters
 }
 
-module.exports.instrumentMonsters = instrumentMonsters
+/**
+ * Function to instrument then write an array of monsters.
+ *
+ * @param {array of uninstrumented monsters} monsters
+ * @param {string} path
+ * @param {function (error, number_of_written_monsters} callback
+ */
+const writeInstrumentedMonsters = function (monsters, path, callback) {
+  const instrumentedMonsters = instrumentMonsters(monsters)
+  fs.writeFile(path, JSON.stringify(instrumentedMonsters), function (error) {
+    callback(error, instrumentedMonsters.length)
+  })
+}
+
+module.exports.writeInstrumentedMonsters = writeInstrumentedMonsters
