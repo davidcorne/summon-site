@@ -8,9 +8,11 @@ block content
 
   div.table-filters
     select(onchange="SummonSite.filterTable()")#spellSelector
+      option All Spells
       each spell in spellData
         option #{spell.spell}
     select#levelSelector
+      option All Levels
       option 1
       option 2
       option 3

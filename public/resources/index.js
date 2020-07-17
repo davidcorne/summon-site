@@ -10,6 +10,10 @@ SummonSite.filterTable = function () {
     const row = table[i]
     const dataColumns = row.getElementsByClassName('dataColumn')
     let show = false
+    // This seems fragile
+    if (selectedSpell === 'All Spells') {
+      show = true
+    }
     for (const spell of dataColumns) {
       if (spell.innerHTML === selectedSpell) {
         show = true
