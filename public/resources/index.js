@@ -1,4 +1,12 @@
-const SummonSite = {}
+/* global self, caches */
+const SummonSite = {
+  urlsToCache: [
+    '/',
+    '/public/resources/index.js',
+    '/public/resources/index.css'
+  ],
+  version: 0
+}
 
 SummonSite.levelSelection = function (selectedLevel, displayLowerLevels) {
   if (selectedLevel === 'All Levels') {
@@ -55,3 +63,19 @@ SummonSite.filterTable = function () {
     }
   }
 }
+
+SummonSite.cacheName = function () {
+  return 'summon-site-cache-v' + SummonSite.version
+}
+
+SummonSite.installServiceWorker = function (event) {
+  event.waitUntil(
+    caches.open(SummonSite.cacheName())
+      .then(function (cache) {
+        console.log('Opened cache')
+        return cache.addAll(SummonSite.urlsToCache)
+      })
+  )
+}
+
+self.addEventListener('install', SummonSite.installServiceWorker)
