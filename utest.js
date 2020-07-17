@@ -3,8 +3,10 @@
 const rewire = require('rewire')
 const chai = require('chai')
 const assert = chai.assert
+const fs = require('fs')
 
 const spellDataModule = rewire('./spellData.js')
+const scrapeModule = rewire('./scrape.js')
 
 describe('Spell Data', function () {
   const normalSpellLevel = spellDataModule.__get__('normalSpellLevel')
@@ -48,5 +50,19 @@ describe('Spell Data', function () {
       return item.spell === 'Summon Celestial'
     })
     assert.strictEqual(summonCelestial.monsterLevelToSpellLevel(1), 5)
+  })
+})
+
+describe('Scraper', function () {
+  const getMonsters = scrapeModule.__get__('getMonsters')
+  it('Whole table', function (done) {
+    fs.readFile('test_data/Monsters.html', function (error, body) {
+      if (error) {
+        throw error
+      }
+      const monsters = getMonsters(body)
+      assert.strictEqual(monsters.length, 517)
+      done()
+    })
   })
 })
