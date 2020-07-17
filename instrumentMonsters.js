@@ -52,4 +52,18 @@ const writeInstrumentedMonsters = function (monsters, path, callback) {
   })
 }
 
+const instrumentScrapedMonsters = function () {
+  const monsters = require('./data/all_monsters')
+  writeInstrumentedMonsters(monsters, './data/summonable_monsters.json', function (error, numberOfWrittenMonsters) {
+    if (error) {
+      throw error
+    }
+    console.log(numberOfWrittenMonsters + ' summonable monsters written')
+  })
+}
+
 module.exports.writeInstrumentedMonsters = writeInstrumentedMonsters
+
+if (require.main === module) {
+  instrumentScrapedMonsters()
+}
