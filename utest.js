@@ -41,7 +41,8 @@ describe('Spell Data', function () {
     const summonAnimal = spellData.find((item) => {
       return item.spell === 'Summon Animal'
     })
-    assert.strictEqual(summonAnimal.trait, 'Animal')
+    assert.strictEqual(summonAnimal.traits.length, 1)
+    assert.strictEqual(summonAnimal.traits[0], 'Animal')
 
     const summonCelestial = spellData.find((item) => {
       return item.spell === 'Summon Celestial'
