@@ -7,10 +7,10 @@ block content
   h1 Summon Site
 
   div.table-filters
-    select#spell
+    select(onchange="SummonSite.filterTable()")#spellSelector
       each spell in spellData
         option #{spell.spell}
-    select#level
+    select#levelSelector
       option 1
       option 2
       option 3
@@ -21,9 +21,9 @@ block content
       option 8
       option 9
       option 10
-    input(type="checkbox")
+    input(type="checkbox")#upToLevelCheck
     label Show all creatures up to this level
-  table
+  table#monsterTable
     tr
       th Spell Level
       th Monster
@@ -33,22 +33,22 @@ block content
       th Type
       th Size
     each monster in monsters
-      // e.g. an Adule Cloud Dragon
-      // {
-      //   "name":"Adult Cloud Dragon",
-      //   "url":"https://2e.aonprd.com/Monsters.aspx?ID=625",
-      //   "family":"Dragon, Cloud",
-      //   "level":14,
-      //   "alignment":"Neutral",
-      //   "creatureType":"Dragon, Elemental",
-      //   "size":"Huge",
-      //   "summonSpells":[
-      //     {"spell":"Summon Dragon","level":10},
-      //     {"spell":"Summon Elemental","level":10}
-      //   ]
-      // }
+      //- e.g. an Adule Cloud Dragon
+        {
+          "name":"Adult Cloud Dragon",
+          "url":"https://2e.aonprd.com/Monsters.aspx?ID=625",
+          "family":"Dragon, Cloud",
+          "level":14,
+          "alignment":"Neutral",
+          "creatureType":"Dragon, Elemental",
+          "size":"Huge",
+          "summonSpells":[
+            {"spell":"Summon Dragon","level":10},
+            {"spell":"Summon Elemental","level":10}
+          ]
+        }
       tr 
-        // All spell levels should be the same, use the first one.
+        //- All spell levels should be the same, use the first one.
         td #{monster.summonSpells[0].level}
         td 
           a(href=monster.url, target="_blank") #{monster.name}
