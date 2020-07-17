@@ -83,7 +83,10 @@ const spellData = [
 ]
 
 const instrumentMonster = function (monster) {
-
+  if (monster.level > 15) {
+    // too high level to summon
+    return null
+  }
 }
 
 module.exports.instrumentMonster = instrumentMonster

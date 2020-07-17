@@ -11,6 +11,7 @@ const scrapeModule = rewire('./scrape.js')
 describe('Spell Data', function () {
   const normalSpellLevel = spellDataModule.__get__('normalSpellLevel')
   const spellData = spellDataModule.__get__('spellData')
+  const instrumentMonster = spellDataModule.__get__('instrumentMonster')
   it('Normal Spell Level', function () {
     // Heightened (2nd) Level 1.
     // Heightened (3rd) Level 2.
@@ -50,6 +51,12 @@ describe('Spell Data', function () {
       return item.spell === 'Summon Celestial'
     })
     assert.strictEqual(summonCelestial.monsterLevelToSpellLevel(1), 5)
+  })
+  it('Instrument Monster', function () {
+    const unsummonable = instrumentMonster({
+      level: 16
+    })
+    assert.isNull(unsummonable)
   })
 })
 
