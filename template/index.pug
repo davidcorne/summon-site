@@ -11,7 +11,7 @@ block content
       option All Spells
       each spell in spellData
         option #{spell.spell}
-    select#levelSelector
+    select(onchange="SummonSite.filterTable()")#levelSelector
       option All Levels
       option 1
       option 2
@@ -51,7 +51,7 @@ block content
         }
       tr 
         //- All spell levels should be the same, use the first one.
-        td #{monster.summonSpells[0].level}
+        td.spellLevel #{monster.summonSpells[0].level}
         td 
           a(href=monster.url, target="_blank") #{monster.name}
         td #{monster.family}

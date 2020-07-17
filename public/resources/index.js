@@ -3,6 +3,8 @@ const SummonSite = {}
 SummonSite.filterTable = function () {
   const spellSelector = document.getElementById('spellSelector')
   const selectedSpell = spellSelector.value
+  const levelSelector = document.getElementById('levelSelector')
+  const selectedLevel = levelSelector.value === 'All Levels' ? levelSelector.value : parseInt(levelSelector.value)
   const monsterTable = document.getElementById('monsterTable')
   const table = monsterTable.getElementsByTagName('tr')
   // From 1 to keep the headers
@@ -18,6 +20,14 @@ SummonSite.filterTable = function () {
       if (spell.innerHTML === selectedSpell) {
         show = true
         break
+      }
+    }
+    // Only check the level, if we're already displaying it
+    if (show && Number.isInteger(selectedLevel)) {
+      const spellLevelElement = row.getElementsByClassName('spellLevel')[0]
+      const spellLevel = parseInt(spellLevelElement.innerHTML)
+      if (spellLevel !== selectedLevel) {
+        show = false
       }
     }
     if (show) {
