@@ -63,20 +63,20 @@ describe('Spell Data', function () {
     })
     assert.isNull(unsummonable)
 
-    let summonable = instrumentMonster({
+    const giant = instrumentMonster({
       level: -1,
       creatureType: 'Giant'
     })
-    assert.strictEqual(summonable.summonSpells.length, 1)
-    assert.strictEqual(summonable.summonSpells[0].spell, 'Summon Giant')
-    assert.strictEqual(summonable.summonSpells[0].level, 5)
-    summonable = instrumentMonster({
+    assert.strictEqual(giant.summonSpells.length, 1)
+    assert.strictEqual(giant.summonSpells[0].spell, 'Summon Giant')
+    assert.strictEqual(giant.summonSpells[0].level, 5)
+    const animal = instrumentMonster({
       level: -1,
       creatureType: 'Animal'
     })
-    assert.strictEqual(summonable.summonSpells.length, 1)
-    assert.strictEqual(summonable.summonSpells[0].spell, 'Summon Animal')
-    assert.strictEqual(summonable.summonSpells[0].level, 1)
+    assert.strictEqual(animal.summonSpells.length, 1)
+    assert.strictEqual(animal.summonSpells[0].spell, 'Summon Animal')
+    assert.strictEqual(animal.summonSpells[0].level, 1)
   })
 })
 
