@@ -90,7 +90,7 @@ const instrumentMonster = function (monster) {
   // Instrument the monster with an array of spells which can summon it, with their levels.
   monster.summonSpells = []
   for (const spell of spellData) {
-    for (const trait in spell.traits) {
+    for (const trait of spell.traits) {
       if (monster.creatureType.includes(trait)) {
         monster.summonSpells.push({
           spell: spell.spell,
