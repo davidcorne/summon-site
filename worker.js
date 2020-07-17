@@ -4,6 +4,7 @@ const pug = require('pug')
 
 const log = require('./log').logger
 const monsters = require('./data/summonable_monsters')
+const spellData = require('./spellData')
 
 const APP = express()
 APP.set('port', (process.env.PORT || 3000))
@@ -39,10 +40,14 @@ const start = function () {
 
 APP.get('/', function (request, response) {
   onRequest(request)
+  const data = {
+    monsters: monsters,
+    spellData: spellData.spellData
+  }
   sendTemplate(
     request, response,
     'index',
-    { monsters: monsters }
+    data
   )
 })
 
