@@ -4,10 +4,11 @@ const rewire = require('rewire')
 const chai = require('chai')
 const assert = chai.assert
 
-const spellDatahModule = rewire('./spellData.js')
+const spellDataModule = rewire('./spellData.js')
 
 describe('Spell Data', function () {
-  const normalSpellLevel = spellDatahModule.__get__('normalSpellLevel')
+  const normalSpellLevel = spellDataModule.__get__('normalSpellLevel')
+  const spellData = spellDataModule.__get__('spellData')
   it('Normal Spell Level', function () {
     // Heightened (2nd) Level 1.
     // Heightened (3rd) Level 2.
@@ -35,5 +36,11 @@ describe('Spell Data', function () {
     assert.strictEqual(normalSpellLevel(13), 9)
     assert.strictEqual(normalSpellLevel(14), 10)
     assert.strictEqual(normalSpellLevel(15), 10)
+  })
+  it('Spell Data', function () {
+    const summonAnimal = spellData.find((item) => {
+      return item.spell === 'Summon Animal'
+    })
+    assert.strictEqual(summonAnimal.trait, 'Animal')
   })
 })
