@@ -13,10 +13,12 @@
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
     "mocha": "^8.0.1",
+    "path": "^0.12.7",
     "pug": "^3.0.0",
     "request": "^2.88.2",
     "rewire": "^5.0.0",
     "standard": "^14.3.4",
+    "urldecode": "^1.0.1",
     "winston": "^3.3.3"
   }
 }

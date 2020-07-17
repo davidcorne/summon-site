@@ -1,5 +1,8 @@
 'use strict'
+const decode = require('urldecode')
 const express = require('express')
+const fs = require('fs')
+const path = require('path')
 const pug = require('pug')
 
 const log = require('./log').logger
@@ -49,6 +52,18 @@ APP.get('/', function (request, response) {
     'index',
     data
   )
+})
+
+APP.get('/public/*', function (request, response) {
+  onRequest(request)
+  const filePath = path.join(__dirname, decode(request.path))
+  fs.stat(filePath, function (error, stats) {
+    if (error) {
+      handle404(request, response, 'Resource not found')
+    } else {
+      response.sendFile(filePath)
+    }
+  })
 })
 
 // Note: This should always be the last route, as otherwise it'll override the other routes.
