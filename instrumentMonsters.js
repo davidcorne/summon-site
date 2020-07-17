@@ -24,4 +24,15 @@ const instrumentMonster = function (monster) {
   return null
 }
 
-module.exports.instrumentMonster = instrumentMonster
+const instrumentMonsters = function (monsters) {
+  const instrumentedMonsters = []
+  for (const monster of monsters) {
+    const instrumentedMonster = instrumentMonster(monster)
+    if (instrumentedMonster) {
+      instrumentedMonsters.push(instrumentedMonster)
+    }
+  }
+  return instrumentedMonsters
+}
+
+module.exports.instrumentMonsters = instrumentMonsters

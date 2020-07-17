@@ -55,6 +55,7 @@ describe('Spell Data', function () {
 })
 describe('Instrument Monsters', function () {
   const instrumentMonster = instrumentMonstersModule.__get__('instrumentMonster')
+  const instrumentMonsters = instrumentMonstersModule.__get__('instrumentMonsters')
   it('Instrument Monster', function () {
     let unsummonable = instrumentMonster({
       level: 16
@@ -90,6 +91,28 @@ describe('Instrument Monsters', function () {
     assert.strictEqual(elementalDragon.summonSpells[0].level, 9)
     assert.strictEqual(elementalDragon.summonSpells[1].spell, 'Summon Elemental')
     assert.strictEqual(elementalDragon.summonSpells[1].level, 9)
+  })
+  it('Instrument Monsters', function () {
+    const monsters = [
+      {
+        level: 5,
+        creatureType: 'Giant'
+      },
+      {
+        level: 16,
+        creatureType: 'Giant'
+      },
+      {
+        level: 12,
+        creatureType: 'Humanoid'
+      },
+      {
+        level: 11,
+        creatureType: 'Fey Animal Plant'
+      }
+    ]
+    const instrumentedMonsters = instrumentMonsters(monsters)
+    assert.strictEqual(instrumentedMonsters.length, 2)
   })
 })
 
