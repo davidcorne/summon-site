@@ -59,7 +59,7 @@ describe('Spell Data', function () {
     assert.isNull(unsummonable)
     unsummonable = instrumentMonster({
       level: 12,
-      family: 'Humanoid'
+      creatureType: 'Humanoid'
     })
     assert.isNull(unsummonable)
   })
