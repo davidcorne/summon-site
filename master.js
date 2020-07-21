@@ -2,15 +2,14 @@
 const cluster = require('cluster')
 const os = require('os')
 
+const config = require('./configuration')
 const log = require('./log').logger
 require('./error_notification')
-
-const NUMBER_OF_WORKERS = (process.env.WORKERS || os.cpus().length)
 
 const startWorkers = function () {
   const currentWorkers = Object.keys(cluster.workers).length
   // currentWorkers should always be 0, but it's worth checking.
-  const workersToSetup = NUMBER_OF_WORKERS - currentWorkers
+  const workersToSetup = config.workers - currentWorkers
   log.info('Master cluster setting up ' + workersToSetup + ' workers')
   for (let i = 0; i < workersToSetup; i++) {
     cluster.fork()
@@ -36,7 +35,9 @@ const setupCallbacks = function () {
 }
 
 const start = function () {
-  log.info('Logging level: ' + log.level)
+  for (const property in config) {
+    log.info('config[' + property + '] = ' + config[property])
+  }
   setupCallbacks()
   startWorkers()
 }

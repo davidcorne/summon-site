@@ -5,13 +5,14 @@ const fs = require('fs')
 const path = require('path')
 const pug = require('pug')
 
+const config = require('./configuration')
 const log = require('./log').logger
 const monsters = require('./data/summonable_monsters')
 const spellData = require('./spellData')
 require('./error_notification')
 
 const APP = express()
-APP.set('port', (process.env.PORT || 3000))
+APP.set('port', config.port)
 
 const HTTP = require('http').Server(APP)
 

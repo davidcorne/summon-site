@@ -2,9 +2,10 @@
 
 const winston = require('winston')
 
+const config = require('./configuration')
+
 const logger = winston.createLogger({
-  // We want info to be the default logging level
-  level: (process.env.LOG_LEVEL || 'info'),
+  level: config.logLevel,
   format: winston.format.simple(),
   transports: [
     new winston.transports.Console()
