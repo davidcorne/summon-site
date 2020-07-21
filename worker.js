@@ -53,10 +53,7 @@ APP.get('/', function (request, response) {
     data
   )
 })
-
-APP.get('/public/*', function (request, response) {
-  onRequest(request)
-  const filePath = path.join(__dirname, decode(request.path))
+const servePath = function (filePath, request, response) {
   fs.stat(filePath, function (error, stats) {
     if (error) {
       handle404(request, response, 'Resource not found')
@@ -64,6 +61,19 @@ APP.get('/public/*', function (request, response) {
       response.sendFile(filePath)
     }
   })
+}
+
+APP.get('/public/*', function (request, response) {
+  onRequest(request)
+  const filePath = path.join(__dirname, decode(request.path))
+  servePath(filePath, request, response)
+})
+
+APP.get('/service-worker.js', function (request, response) {
+  // A service worker needs to be served from root to cache all of the files.
+  onRequest(request)
+  const filePath = path.join(__dirname, '/public/resources/service-worker.js')
+  servePath(filePath, request, response)
 })
 
 // Note: This should always be the last route, as otherwise it'll override the other routes.
