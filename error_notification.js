@@ -1,12 +1,8 @@
 'use strict'
 const Airbrake = require('@airbrake/node')
 
-const environment = (process.env.ENVIRONMENT || 'debug')
+const config = require('./configuration')
 
-const notifier = new Airbrake.Notifier({
-  projectId: process.env.AIRBRAKE_PROJECT_ID,
-  projectKey: process.env.AIRBRAKE_API_KEY,
-  environment: environment
-})
+const notifier = new Airbrake.Notifier(config)
 
 module.exports.notifier = notifier
