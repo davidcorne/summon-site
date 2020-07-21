@@ -74,8 +74,13 @@ APP.get('/public/*', function (request, response) {
 APP.get('/service-worker.js', function (request, response) {
   // A service worker needs to be served from root to cache all of the files.
   onRequest(request)
-  const filePath = path.join(__dirname, '/public/resources/service-worker.js')
-  servePath(filePath, request, response)
+  if (config.environment === 'debug') {
+    // Don't serve up a service worker in debug
+    handle404(request, response, 'Don\'t want a service worker in debug')
+  } else {
+    const filePath = path.join(__dirname, '/public/resources/service-worker.js')
+    servePath(filePath, request, response)
+  }
 })
 
 // Note: This should always be the last route, as otherwise it'll override the other routes.
