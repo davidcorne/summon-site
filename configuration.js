@@ -2,8 +2,8 @@
 
 const config = {
   environment: (process.env.ENVIRONMENT || 'debug'),
-  projectId: process.env.AIRBRAKE_PROJECT_ID,
-  projectKey: process.env.AIRBRAKE_API_KEY
+  airbrakeProjectId: process.env.AIRBRAKE_PROJECT_ID,
+  airbrakeProjectKey: process.env.AIRBRAKE_API_KEY
 }
 
 // Override those properties with the user config
