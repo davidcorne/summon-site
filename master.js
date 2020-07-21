@@ -3,6 +3,7 @@ const cluster = require('cluster')
 const os = require('os')
 
 const log = require('./log').logger
+require('./error_notification')
 
 const NUMBER_OF_WORKERS = (process.env.WORKERS || os.cpus().length)
 

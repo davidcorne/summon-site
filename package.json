@@ -9,6 +9,7 @@
   "author": "David Corne (davidcorne@gmail.com)",
   "license": "MIT",
   "dependencies": {
+    "@airbrake/node": "^1.3.0",
     "chai": "^4.2.0",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
