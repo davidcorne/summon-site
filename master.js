@@ -34,9 +34,7 @@ const setupCallbacks = function () {
 }
 
 const start = function () {
-  for (const property in config) {
-    log.info('config[' + property + '] = ' + config[property])
-  }
+  log.info(JSON.stringify(config, null, 4))
   setupCallbacks()
   startWorkers()
 }
