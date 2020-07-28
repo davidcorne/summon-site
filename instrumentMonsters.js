@@ -12,12 +12,14 @@ const instrumentMonster = function (monster) {
   monster.summonSpells = []
   for (const spell of spellData.spellData) {
     for (const trait of spell.traits) {
-      if (monster.creatureType.includes(trait)) {
-        monster.summonSpells.push({
-          spell: spell.spell,
-          level: spell.monsterLevelToSpellLevel(monster.level)
-        })
-        continue
+      for (const monsterTrait of monster.traits) {
+        if (monsterTrait === trait) {
+          monster.summonSpells.push({
+            spell: spell.spell,
+            level: spell.monsterLevelToSpellLevel(monster.level)
+          })
+          continue
+        }
       }
     }
   }
