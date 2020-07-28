@@ -58,6 +58,7 @@ SummonSite.filterTable = function () {
 
 SummonSite.showMonster = function (monster) {
   const sidebar = document.getElementsByClassName('sidebar')[0]
+  sidebar.innerHTML = ''
   const p = document.createElement('p')
   p.innerHTML = monster.name
   sidebar.appendChild(p)
