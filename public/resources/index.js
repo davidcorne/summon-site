@@ -72,22 +72,22 @@ SummonSite.renderSpellLists = function (spellLists) {
 }
 
 SummonSite.actionCost = function (actionCost) {
-  let url = ''
+  let image = ''
   if (actionCost === 'Free Action') {
-    url = 'free-action'
+    image = 'FreeAction.png'
   } else if (actionCost === 'None') {
     // If it's not an action, just return empty
     return ''
   } else if (actionCost === 'One Action') {
-    url = 'one-action'
+    image = 'OneAction.png'
   } else if (actionCost === 'Two Actions') {
-    url = 'two-action'
+    image = 'TwoActions.png'
   } else if (actionCost === 'Three Actions') {
-    url = 'three-action'
+    image = 'ThreeActions.png'
   } else if (actionCost === 'Reaction') {
-    url = 'reaction'
+    image = 'Reaction.png'
   }
-  return `<a>${url}</a>`
+  return `<img class="actionIcon" src="/public/images/${image}"</img>`
 }
 
 SummonSite.renderTraits = function (traits) {
