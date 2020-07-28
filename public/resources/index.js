@@ -105,10 +105,10 @@ SummonSite.renderDamage = function (damage, plusDamage) {
 
 SummonSite.renderAttack = function (type, attack) {
   return `
-  <b>${type}</b> ${SummonSite.actionCost(attack.action_cost)} ${attack.name} ${attack.to_hit} 
+  <div><b>${type}</b> ${SummonSite.actionCost(attack.action_cost)} ${attack.name} ${attack.to_hit} 
   ${SummonSite.renderTraits(attack.traits)},
   ${attack.damage ? SummonSite.renderDamage(attack.damage, attack.plus_damage) : ''}
-  <br>`
+  </div>`
 }
 
 SummonSite.renderMelee = function (melee) {
@@ -196,7 +196,7 @@ SummonSite.showMonster = function (monster) {
     `
     : ''}
   <hr>
-  <b>AC</b>
+  <div><b>AC</b>
   ${monster.ac}${monster.ac_special ? ' (' + monster.ac_special.map(ac => `${ac.descr}`) + ')' : ''};
   <b>Fort</b>
   ${monster.saves.fort}${monster.saves.fort_misc ? ' (' + monster.saves.fort_misc + ')' : ''},
@@ -204,8 +204,8 @@ SummonSite.showMonster = function (monster) {
   ${monster.saves.ref}${monster.saves.ref_misc ? ' (' + monster.saves.ref_misc + ')' : ''},
   <b>Will</b>
   ${monster.saves.will}${monster.saves.will_misc ? ' (' + monster.saves.will_misc + ')' : ''}${monster.saves.misc ? '; ' + monster.saves.misc : ''}
-  <br>
-  <b>HP</b>
+  </div>
+  <div><b>HP</b>
   ${monster.hp}${monster.hp_misc ? ' (' + monster.hp_misc + ')' : ''};
   ${monster.immunities ? `<b>Immunities</b> 
     ${monster.immunities.map(immunity =>
@@ -225,18 +225,19 @@ SummonSite.showMonster = function (monster) {
       )}
     `
     : ''}
-  ${monster.automatic_abilities ? `<br>${SummonSite.renderAbilities(monster.automatic_abilities)}` : ''}
+  </div>
+  ${monster.automatic_abilities ? `${SummonSite.renderAbilities(monster.automatic_abilities)}` : ''}
   <hr>
-  <b>Speed</b>
+  <div><b>Speed</b>
   ${monster.speed.map(speed =>
     ` ${speed.type} ${speed.amount ? `${speed.amount} feet` : ''}`
   )}
-  <br>
+  </div>
   ${monster.melee ? monster.melee.map(SummonSite.renderMelee).join('') : ''}
   ${monster.ranged ? monster.ranged.map(SummonSite.renderRanged).join('') : ''}
   ${monster.spell_lists ? SummonSite.renderSpellLists(monster.spell_lists) : ''}
   ${monster.ritual_lists ? SummonSite.renderSpellLists(monster.ritual_lists) : ''}
-  ${monster.proactive_abilities ? `<br>${SummonSite.renderAbilities(monster.proactive_abilities)}` : ''}
+  ${monster.proactive_abilities ? `${SummonSite.renderAbilities(monster.proactive_abilities)}` : ''}
   
   <hr>
   <h3>${monster.name}</h3>
