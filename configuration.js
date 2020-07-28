@@ -1,5 +1,6 @@
 'use strict'
 
+const fs = require('fs')
 const os = require('os')
 
 const config = {
@@ -12,9 +13,11 @@ const config = {
 }
 
 // Override those properties with the user config
-const userConfig = require('./user_config')
-for (const property in userConfig) {
-  config[property] = userConfig[property]
+if (fs.existsSync('user_config.json')) {
+  const userConfig = require('./user_config')
+  for (const property in userConfig) {
+    config[property] = userConfig[property]
+  }
 }
 
 module.exports = config
