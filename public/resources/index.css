@@ -81,3 +81,18 @@ select {
 .actionIcon {
     height: 15px;
 }
+
+.traits {
+    margin-bottom: 5px;
+}
+
+.traits > span {
+    border-style: double;
+    border-width: 2px;
+    border-color: black;
+    margin: 5px;
+    margin-right: 10px;
+    padding: 2px;
+    background-color: lightgray;
+    text-align: center;
+}

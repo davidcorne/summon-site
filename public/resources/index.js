@@ -151,10 +151,10 @@ SummonSite.showMonster = function (monster) {
     <a>${monster.name}</a>
     <span class="monsterType">${monster.type} ${monster.level}
   </h1>
-  <ul class="traits">
+  <div class="traits">
     ${monster.traits.map(trait =>
-      `<li>${trait}</li>`).join('')}
-  </ul>
+      `<span>${trait}</span>`).join('')}
+  </div>
   <div><b>Source</b>
     ${monster.source.map(source =>
       `<i>${source.abbr} pg. ${source.page_start}</i>`).join('')}
