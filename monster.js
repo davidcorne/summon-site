@@ -180,9 +180,34 @@ const loadMonsters = function (callback) {
 if (require.main === module) {
   loadMonsters(data => {
     const monsters = data.monsters
+    const master = {}
     for (const monster of monsters) {
-      console.log(monster)
-      break
+      if (monster.sense_abilities) {
+        for (const ability of monster.sense_abilities) {
+          for (const key in ability) {
+            if (ability[key]) {
+              master[key] = monster.name
+            }
+          }
+        }
+      }
     }
+    console.log(master)
+    /*
+{
+  name: 'Zombie Shambler',
+  action_cost: 'Zombie Shambler',
+  description: 'Zombie Shambler',
+  raw_description: 'Zombie Shambler',
+  traits: 'Wraith',
+  trigger: 'Shadow Drake',
+  effect: 'Shadow Drake',
+  generic_description: 'Xotanispawn',
+  critical_success: 'Xotanispawn',
+  success: 'Xotanispawn',
+  failure: 'Xotanispawn',
+  critical_failure: 'Xotanispawn'
+}
+*/
   })
 }
