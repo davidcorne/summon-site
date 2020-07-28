@@ -73,17 +73,17 @@ SummonSite.showMonster = function (monster) {
   <br>
   <b>Senses</b>
     ${monster.senses.map(sense =>
-      `${sense}`
+      ` ${sense}`
     )}
   <br>
   <b>Languages</b>
     ${monster.languages ? monster.languages.map(language =>
-      `${language}`
+      ` ${language}`
     ) : ''}
   <br>
   <b>Skills</b>
     ${monster.skills.map(skill =>
-      `<u>${skill.name}</u>${skill.bonus}${skill.misc ? ' (' + skill.misc + ')' : ''}`
+      ` <u>${skill.name}</u>${skill.bonus}${skill.misc ? ' (' + skill.misc + ')' : ''}`
     )}
   <br>
   <b>Str</b>
