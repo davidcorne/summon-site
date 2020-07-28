@@ -123,6 +123,7 @@ SummonSite.renderAbility = function (ability) {
   return `<b>${ability.name}</b> ${SummonSite.actionCost(ability.action_cost)}
     ${ability.traits ? SummonSite.renderTraits(ability.traits) : ''}  
     ${ability.description ? ability.description : ''}
+    ${ability.frequency ? `<b>Frequency</b> ${ability.frequency};` : ''}
     ${ability.trigger ? `<b>Trigger</b> ${ability.trigger};` : ''}
     ${ability.effect ? `<b>Effect</b> ${ability.effect}` : ''}
     <br>`
