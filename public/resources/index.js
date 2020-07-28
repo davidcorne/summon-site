@@ -90,12 +90,16 @@ SummonSite.actionCost = function (actionCost) {
   return `<a>${url}</a>`
 }
 
+SummonSite.renderTraits = function (traits) {
+  return `${traits ? `(${traits.map(trait =>
+    `${trait}`
+  )})` : ''}`
+}
+
 SummonSite.renderAttack = function (type, attack) {
   return `
   <b>${type}</b> ${SummonSite.actionCost(attack.action_cost)} ${attack.name} ${attack.to_hit} 
-  ${attack.traits ? `(${attack.traits.map(trait =>
-    `${trait}`
-  )})` : ''},
+  ${SummonSite.renderTraits(attack.traits)},
   <b>Damage</b> ${attack.damage.formula} ${attack.damage.type} 
   ${attack.plus_damage ? `plus ${attack.plus_damage.map(damage =>
     `${damage.formula ? damage.formula : ''} ${damage.type}`
@@ -113,6 +117,7 @@ SummonSite.renderRanged = function (ranged) {
 
 SummonSite.renderAbility = function (ability) {
   return `<b>${ability.name}</b> ${SummonSite.actionCost(ability.action_cost)}
+    ${ability.traits ? SummonSite.renderTraits(ability.traits) : ''}  
     ${ability.description ? ability.description : ''}
     ${ability.trigger ? `<b>Trigger</b> ${ability.trigger};` : ''}
     ${ability.effect ? `<b>Effect</b> ${ability.effect}` : ''}
