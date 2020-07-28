@@ -61,7 +61,7 @@ SummonSite.showMonster = function (monster) {
   creature.innerHTML = `
   <h1 class="creature-name">
     <a>${monster.name}</a>
-    <span>Creature ${monster.level}
+    <span class="monsterType">${monster.type} ${monster.level}
   </h1>
   <ul class="traits">
     ${monster.traits.map(trait =>
@@ -100,21 +100,16 @@ SummonSite.showMonster = function (monster) {
   ${monster.ability_mods.cha_mod}
   <br>
   <p>Sense Abilities</p>
+  <p>Items</p>
   <hr>
   <b>AC</b>
-  ${monster.ac};
+  ${monster.ac}${monster.ac_special ? ' (' + monster.ac_special.map(ac => `${ac.descr}`) + ')' : ''};
   <b>Fort</b>
-  ${monster.saves.fort}
-  ${monster.saves.fort_misc ? '(' + monster.saves.fort_misc + ')' : ''}
-  ,
+  ${monster.saves.fort}${monster.saves.fort_misc ? ' (' + monster.saves.fort_misc + ')' : ''},
   <b>Reflex</b>
-  ${monster.saves.ref}
-  ${monster.saves.ref_misc ? '(' + monster.saves.ref_misc + ')' : ''}
-  ,
+  ${monster.saves.ref}${monster.saves.ref_misc ? ' (' + monster.saves.ref_misc + ')' : ''},
   <b>Will</b>
-  ${monster.saves.will}
-  ${monster.saves.will_misc ? '(' + monster.saves.will_misc + ')' : ''}
-  ${monster.saves.misc ? ';' + monster.saves.misc : ''}
+  ${monster.saves.will}${monster.saves.will_misc ? ' (' + monster.saves.will_misc + ')' : ''}${monster.saves.misc ? '; ' + monster.saves.misc : ''}
   <br>
   <b>HP</b>
   ${monster.hp}${monster.hp_misc ? ' (' + monster.hp_misc + ')' : ''};
