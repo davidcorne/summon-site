@@ -29,35 +29,19 @@ block content
     tr
       th Spell Level
       th Monster
-      th Family
       th Level
-      th Alignment
-      th Type
-      th Size
+      th Traits
+      th
     each monster in monsters
-      //- e.g. an Adult Cloud Dragon
-        {
-          "name":"Adult Cloud Dragon",
-          "url":"https://2e.aonprd.com/Monsters.aspx?ID=625",
-          "family":"Dragon, Cloud",
-          "level":14,
-          "alignment":"Neutral",
-          "creatureType":"Dragon, Elemental",
-          "size":"Huge",
-          "summonSpells":[
-            {"spell":"Summon Dragon","level":10},
-            {"spell":"Summon Elemental","level":10}
-          ]
-        }
       tr 
         //- All spell levels should be the same, use the first one.
         td.spellLevel #{monster.summonSpells[0].level}
         td 
           a(href=monster.url, target="_blank") #{monster.name}
-        td #{monster.family}
         td #{monster.level}
-        td #{monster.alignment}
-        td #{monster.creatureType}
-        td #{monster.size}
+        td= monster.traits.join(', ')
+        td 
+          a(onclick="SummonSite.showMonster(" + JSON.stringify(monster) + ")") 👁
         each spell in monster.summonSpells
-          td.dataColumn #{spell.spell}
+          td.spellColumn #{spell.spell}
+  include sidebar.pug

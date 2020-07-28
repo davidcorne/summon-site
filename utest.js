@@ -63,20 +63,20 @@ describe('Instrument Monsters', function () {
     assert.isNull(unsummonable)
     unsummonable = instrumentMonster({
       level: 12,
-      creatureType: 'Humanoid'
+      traits: ['Humanoid']
     })
     assert.isNull(unsummonable)
 
     const giant = instrumentMonster({
       level: -1,
-      creatureType: 'Giant'
+      traits: ['Giant']
     })
     assert.strictEqual(giant.summonSpells.length, 1)
     assert.strictEqual(giant.summonSpells[0].spell, 'Summon Giant')
     assert.strictEqual(giant.summonSpells[0].level, 5)
     const animal = instrumentMonster({
       level: -1,
-      creatureType: 'Animal'
+      traits: ['Animal']
     })
     assert.strictEqual(animal.summonSpells.length, 1)
     assert.strictEqual(animal.summonSpells[0].spell, 'Summon Animal')
@@ -84,7 +84,7 @@ describe('Instrument Monsters', function () {
 
     const elementalDragon = instrumentMonster({
       level: 12,
-      creatureType: 'Elemental Dragon'
+      traits: ['Elemental', 'Dragon']
     })
     assert.strictEqual(elementalDragon.summonSpells.length, 2)
     assert.strictEqual(elementalDragon.summonSpells[0].spell, 'Summon Dragon')
@@ -96,19 +96,19 @@ describe('Instrument Monsters', function () {
     const monsters = [
       {
         level: 5,
-        creatureType: 'Giant'
+        traits: ['Giant']
       },
       {
         level: 16,
-        creatureType: 'Giant'
+        traits: ['Giant']
       },
       {
         level: 12,
-        creatureType: 'Humanoid'
+        traits: ['Humanoid']
       },
       {
         level: 11,
-        creatureType: 'Fey Animal Plant'
+        traits: ['Fey', 'Animal', 'Plant']
       }
     ]
     const instrumentedMonsters = instrumentMonsters(monsters)

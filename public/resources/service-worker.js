@@ -11,7 +11,12 @@ const PRECACHE_URLS = [
   '/',
   'public/resources/index.css',
   'public/resources/index.js',
-  'public/resources/sorttable.js'
+  'public/resources/sorttable.js',
+  'public/images/FreeAction.png',
+  'public/images/OneAction.png',
+  'public/images/Reaction.png',
+  'public/images/ThreeActions.png',
+  'public/images/TwoActions.png'
 ]
 
 // The install handler takes care of precaching the resources we always need.

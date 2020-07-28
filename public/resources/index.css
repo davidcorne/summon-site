@@ -4,7 +4,6 @@ body {
 }
 
 .content {
-    max-width: 960px;
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -13,7 +12,7 @@ body {
     padding-left: 30px;
 }
 
-.dataColumn {
+.spellColumn {
     display: none;
 }
 
@@ -52,4 +51,48 @@ th {
 select {
     padding: 5px;
     margin-right: 10px;
+}
+
+#monsterTable {
+    width: 50%;
+}
+
+.leftColumn {
+    width: 50%;
+}
+
+.sidebar {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.creature {
+    padding-left: 8px;
+}
+
+.successFailure {
+    padding-top: 3px;
+    padding-left: 15px;
+}
+
+.actionIcon {
+    height: 15px;
+}
+
+.traits {
+    margin-bottom: 5px;
+}
+
+.traits > span {
+    border-style: double;
+    border-width: 2px;
+    border-color: black;
+    margin: 5px;
+    margin-right: 10px;
+    padding: 2px;
+    background-color: lightgray;
+    text-align: center;
 }
