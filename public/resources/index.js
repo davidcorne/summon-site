@@ -212,7 +212,7 @@ SummonSite.showMonster = function (monster) {
       )}
     `
     : ''}
-  <p>Automatic Abilities</p>
+  ${monster.automatic_abilities ? `<br>${SummonSite.renderSenseAbilities(monster.automatic_abilities)}` : ''}
   <hr>
   <b>Speed</b>
   ${monster.speed.map(speed =>
