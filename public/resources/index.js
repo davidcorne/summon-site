@@ -56,6 +56,21 @@ SummonSite.filterTable = function () {
   }
 }
 
+SummonSite.renderSpellGroup = function (group) {
+  return `
+  <b>${group.level}${group.heightened_level ? ` (${group.heightened_level})` : ''}</b>
+  ${group.spells.map(spell =>
+    `${spell.name} ${spell.frequency ? `(${spell.frequency})` : ''}`
+    )}
+  `
+}
+
+SummonSite.renderSpellLists = function (spellLists) {
+  return `${spellLists.map(list =>
+    `<b>${list.name}</b> DC ${list.dc}; ${list.spell_groups.map(SummonSite.renderSpellGroup)}`
+    )}`
+}
+
 SummonSite.showMonster = function (monster) {
   const creature = document.getElementsByClassName('creature')[0]
   creature.innerHTML = `
@@ -145,9 +160,12 @@ SummonSite.showMonster = function (monster) {
   <br>
   <p>Melee</p>
   <p>Ranged</p>
-  <p>Spell List</p>
+  ${monster.spell_lists ? SummonSite.renderSpellLists(monster.spell_lists) : ''}
   <p>Rituals</p>
   <p>Proactive Abilities</p>
+  <hr>
+  <h3>${monster.name}</h3>
+  ${monster.description}
   `
 }
 
