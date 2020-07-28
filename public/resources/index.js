@@ -103,9 +103,19 @@ SummonSite.renderDamage = function (damage, plusDamage) {
     )}` : ''}`
 }
 
+SummonSite.renderAttackBonus = function (bonus, traits) {
+  const bonusNumber = parseInt(bonus)
+  const MAP = traits ? traits.includes('agile') ? 4 : 5 : 5// Multiple Attack Penalty
+  const signFunctor = bonus => bonus > 0 ? '+' : ''
+  const firstAttack = `${signFunctor(bonusNumber)}${bonusNumber}`
+  const secondAttack = `${signFunctor(bonusNumber - MAP)}${bonusNumber - MAP}`
+  const thirdAttack = `${signFunctor(bonusNumber - (2 * MAP))}${bonusNumber - (2 * MAP)}`
+  return `${firstAttack} [${secondAttack}/${thirdAttack}]`
+}
+
 SummonSite.renderAttack = function (type, attack) {
   return `
-  <div><b>${type}</b> ${SummonSite.actionCost(attack.action_cost)} ${attack.name} ${attack.to_hit} 
+  <div><b>${type}</b> ${SummonSite.actionCost(attack.action_cost)} ${attack.name} ${SummonSite.renderAttackBonus(attack.to_hit, attack.traits)}
   ${SummonSite.renderTraits(attack.traits)},
   ${attack.damage ? SummonSite.renderDamage(attack.damage, attack.plus_damage) : ''}
   </div>`
