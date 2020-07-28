@@ -71,6 +71,12 @@ SummonSite.renderSpellLists = function (spellLists) {
     ).join('')}`
 }
 
+SummonSite.renderMelee = function (melee) {
+  return `
+  <b>Melee</b> ${melee.name}
+  <br>`
+}
+
 SummonSite.showMonster = function (monster) {
   const creature = document.getElementsByClassName('creature')[0]
   creature.innerHTML = `
@@ -158,7 +164,7 @@ SummonSite.showMonster = function (monster) {
     ` ${speed.type} ${speed.amount ? `${speed.amount} feet` : ''}`
   )}
   <br>
-  <p>Melee</p>
+  ${monster.melee.map(SummonSite.renderMelee).join('')}
   <p>Ranged</p>
   ${monster.spell_lists ? SummonSite.renderSpellLists(monster.spell_lists) : ''}
   <p>Rituals</p>
