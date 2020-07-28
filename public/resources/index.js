@@ -56,6 +56,13 @@ SummonSite.filterTable = function () {
   }
 }
 
+SummonSite.showMonster = function (monster) {
+  const sidebar = document.getElementsByClassName('sidebar')[0]
+  const p = document.createElement('p')
+  p.innerHTML = monster.name
+  sidebar.appendChild(p)
+}
+
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('service-worker.js')
