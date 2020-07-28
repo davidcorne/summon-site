@@ -72,3 +72,8 @@ select {
 .creature {
     padding-left: 8px;
 }
+
+.successFailure {
+    padding-top: 3px;
+    padding-left: 15px;
+}

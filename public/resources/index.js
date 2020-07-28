@@ -119,6 +119,16 @@ SummonSite.renderRanged = function (ranged) {
   return SummonSite.renderAttack('Ranged', ranged)
 }
 
+SummonSite.renderSuccessFailure = function (obj) {
+  return `<div class="successFailure">
+  ${obj.critical_success ? `<div><b>Critical Success</b>${obj.critical_success}</div>` : ''}
+  ${obj.critical_success ? `<div><b>Success</b>${obj.success}</div>` : ''}
+  ${obj.critical_success ? `<div><b>Failure</b>${obj.failure}</div>` : ''}
+  ${obj.critical_success ? `<div><b>Critical Failure</b>${obj.critical_failure}</div>` : ''}
+  </div>
+  `
+}
+
 SummonSite.renderAbility = function (ability) {
   return `<b>${ability.name}</b> ${SummonSite.actionCost(ability.action_cost)}
     ${ability.traits ? SummonSite.renderTraits(ability.traits) : ''}  
@@ -126,7 +136,8 @@ SummonSite.renderAbility = function (ability) {
     ${ability.frequency ? `<b>Frequency</b> ${ability.frequency};` : ''}
     ${ability.trigger ? `<b>Trigger</b> ${ability.trigger};` : ''}
     ${ability.effect ? `<b>Effect</b> ${ability.effect}` : ''}
-    <br>`
+    ${ability.generic_description ? `${ability.generic_description}<br>${SummonSite.renderSuccessFailure(ability)}` : ''}
+    `
 }
 
 SummonSite.renderAbilities = function (senseAbilities) {
