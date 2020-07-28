@@ -89,17 +89,21 @@ SummonSite.actionCost = function (actionCost) {
   return `<a>${url}</a>`
 }
 
-SummonSite.renderMelee = function (melee) {
+SummonSite.renderAttack = function (type, attack) {
   return `
-  <b>Melee</b> ${SummonSite.actionCost(melee.action_cost)} ${melee.name} ${melee.to_hit} 
-  ${melee.traits ? `(${melee.traits.map(trait =>
+  <b>${type}</b> ${SummonSite.actionCost(attack.action_cost)} ${attack.name} ${attack.to_hit} 
+  ${attack.traits ? `(${attack.traits.map(trait =>
     `${trait}`
   )})` : ''},
-  <b>Damage</b> ${melee.damage.formula} ${melee.damage.type} 
-  ${melee.plus_damage ? `plus ${melee.plus_damage.map(damage =>
+  <b>Damage</b> ${attack.damage.formula} ${attack.damage.type} 
+  ${attack.plus_damage ? `plus ${attack.plus_damage.map(damage =>
     `${damage.formula ? damage.formula : ''} ${damage.type}`
     )}` : ''}
   <br>`
+}
+
+SummonSite.renderMelee = function (melee) {
+  return SummonSite.renderAttack('Melee', melee)
 }
 
 SummonSite.showMonster = function (monster) {
