@@ -66,9 +66,9 @@ SummonSite.renderSpellGroup = function (group) {
 }
 
 SummonSite.renderSpellLists = function (spellLists) {
-  return `${spellLists.map(list =>
+  return `<div>${spellLists.map(list =>
     `<b>${list.name}</b> DC ${list.dc}; ${list.spell_groups.map(SummonSite.renderSpellGroup)}`
-    ).join('')}`
+    ).join('')}</div>`
 }
 
 SummonSite.actionCost = function (actionCost) {
@@ -80,9 +80,9 @@ SummonSite.actionCost = function (actionCost) {
     return ''
   } else if (actionCost === 'One Action') {
     url = 'one-action'
-  } else if (actionCost === 'Two Action') {
+  } else if (actionCost === 'Two Actions') {
     url = 'two-action'
-  } else if (actionCost === 'Three Action') {
+  } else if (actionCost === 'Three Actions') {
     url = 'three-action'
   } else if (actionCost === 'Reaction') {
     url = 'reaction'
@@ -121,23 +121,23 @@ SummonSite.renderRanged = function (ranged) {
 
 SummonSite.renderSuccessFailure = function (obj) {
   return `<div class="successFailure">
-  ${obj.critical_success ? `<div><b>Critical Success</b>${obj.critical_success}</div>` : ''}
-  ${obj.critical_success ? `<div><b>Success</b>${obj.success}</div>` : ''}
-  ${obj.critical_success ? `<div><b>Failure</b>${obj.failure}</div>` : ''}
-  ${obj.critical_success ? `<div><b>Critical Failure</b>${obj.critical_failure}</div>` : ''}
+  ${obj.critical_success ? `<div><b>Critical Success</b> ${obj.critical_success}</div>` : ''}
+  ${obj.critical_success ? `<div><b>Success</b> ${obj.success}</div>` : ''}
+  ${obj.critical_success ? `<div><b>Failure</b> ${obj.failure}</div>` : ''}
+  ${obj.critical_success ? `<div><b>Critical Failure</b> ${obj.critical_failure}</div>` : ''}
   </div>
   `
 }
 
 SummonSite.renderAbility = function (ability) {
-  return `<b>${ability.name}</b> ${SummonSite.actionCost(ability.action_cost)}
+  return `<div><b>${ability.name}</b> ${SummonSite.actionCost(ability.action_cost)}
     ${ability.traits ? SummonSite.renderTraits(ability.traits) : ''}  
     ${ability.description ? ability.description : ''}
     ${ability.frequency ? `<b>Frequency</b> ${ability.frequency};` : ''}
     ${ability.trigger ? `<b>Trigger</b> ${ability.trigger};` : ''}
     ${ability.effect ? `<b>Effect</b> ${ability.effect}` : ''}
-    ${ability.generic_description ? `${ability.generic_description}<br>${SummonSite.renderSuccessFailure(ability)}` : ''}
-    `
+    ${ability.generic_description ? `${ability.generic_description}${SummonSite.renderSuccessFailure(ability)}` : ''}
+    </div>`
 }
 
 SummonSite.renderAbilities = function (senseAbilities) {
@@ -155,25 +155,26 @@ SummonSite.showMonster = function (monster) {
     ${monster.traits.map(trait =>
       `<li>${trait}</li>`).join('')}
   </ul>
-  <b>Source</b>
+  <div><b>Source</b>
     ${monster.source.map(source =>
       `<i>${source.abbr} pg. ${source.page_start}</i>`).join('')}
-  <br>
-  <b>Senses</b>
+  </div>
+  <div><b>Senses</b>
     ${monster.senses.map(sense =>
       ` ${sense}`
     )}
-  <br>
-  <b>Languages</b>
+  </div>
+  <div><b>Languages</b>
     ${monster.languages ? monster.languages.map(language =>
       ` ${language}`
     ) : ''}
-  <br>
-  <b>Skills</b>
+  </div>
+  <div><b>Skills</b>
     ${monster.skills.map(skill =>
       ` <u>${skill.name}</u>${skill.bonus}${skill.misc ? ' (' + skill.misc + ')' : ''}`
     )}
-  <br>
+  </div>
+  <div>
   <b>Str</b>
   ${monster.ability_mods.str_mod}
   <b>Dex</b>
@@ -186,7 +187,7 @@ SummonSite.showMonster = function (monster) {
   ${monster.ability_mods.wis_mod}
   <b>Cha</b>
   ${monster.ability_mods.cha_mod}
-  <br>
+  </div>
   ${monster.sense_abilities ? SummonSite.renderAbilities(monster.sense_abilities) : ''}
   ${monster.items ? `<b>Items</b> 
     ${monster.items.map(item =>
@@ -234,8 +235,9 @@ SummonSite.showMonster = function (monster) {
   ${monster.melee ? monster.melee.map(SummonSite.renderMelee).join('') : ''}
   ${monster.ranged ? monster.ranged.map(SummonSite.renderRanged).join('') : ''}
   ${monster.spell_lists ? SummonSite.renderSpellLists(monster.spell_lists) : ''}
-  <p>Rituals</p>
-  <p>Proactive Abilities</p>
+  ${monster.ritual_lists ? SummonSite.renderSpellLists(monster.ritual_lists) : ''}
+  ${monster.proactive_abilities ? `<br>${SummonSite.renderAbilities(monster.proactive_abilities)}` : ''}
+  
   <hr>
   <h3>${monster.name}</h3>
   ${monster.description}
