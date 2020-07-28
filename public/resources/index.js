@@ -106,6 +106,10 @@ SummonSite.renderMelee = function (melee) {
   return SummonSite.renderAttack('Melee', melee)
 }
 
+SummonSite.renderRanged = function (ranged) {
+  return SummonSite.renderAttack('Ranged', ranged)
+}
+
 SummonSite.showMonster = function (monster) {
   const creature = document.getElementsByClassName('creature')[0]
   creature.innerHTML = `
@@ -193,8 +197,8 @@ SummonSite.showMonster = function (monster) {
     ` ${speed.type} ${speed.amount ? `${speed.amount} feet` : ''}`
   )}
   <br>
-  ${monster.melee.map(SummonSite.renderMelee).join('')}
-  <p>Ranged</p>
+  ${monster.melee ? monster.melee.map(SummonSite.renderMelee).join('') : ''}
+  ${monster.ranged ? monster.ranged.map(SummonSite.renderRanged).join('') : ''}
   ${monster.spell_lists ? SummonSite.renderSpellLists(monster.spell_lists) : ''}
   <p>Rituals</p>
   <p>Proactive Abilities</p>
