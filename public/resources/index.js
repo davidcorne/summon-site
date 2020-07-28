@@ -76,7 +76,8 @@ SummonSite.actionCost = function (actionCost) {
   if (actionCost === 'Free Action') {
     url = 'free-action'
   } else if (actionCost === 'None') {
-    url = 'no-action'
+    // If it's not an action, just return empty
+    return ''
   } else if (actionCost === 'One Action') {
     url = 'one-action'
   } else if (actionCost === 'Two Action') {
@@ -108,6 +109,18 @@ SummonSite.renderMelee = function (melee) {
 
 SummonSite.renderRanged = function (ranged) {
   return SummonSite.renderAttack('Ranged', ranged)
+}
+
+SummonSite.renderAbility = function (ability) {
+  return `<b>${ability.name}</b> ${SummonSite.actionCost(ability.action_cost)}
+    ${ability.description ? ability.description : ''}
+    ${ability.trigger ? `<b>Trigger</b> ${ability.trigger};` : ''}
+    ${ability.effect ? `<b>Effect</b> ${ability.effect}` : ''}
+    <br>`
+}
+
+SummonSite.renderSenseAbilities = function (senseAbilities) {
+  return `${senseAbilities.map(SummonSite.renderAbility).join('')}`
 }
 
 SummonSite.showMonster = function (monster) {
@@ -153,7 +166,7 @@ SummonSite.showMonster = function (monster) {
   <b>Cha</b>
   ${monster.ability_mods.cha_mod}
   <br>
-  <p>Sense Abilities</p>
+  ${monster.sense_abilities ? SummonSite.renderSenseAbilities(monster.sense_abilities) : ''}
   ${monster.items ? `<b>Items</b> 
     ${monster.items.map(item =>
       ` ${item}`
