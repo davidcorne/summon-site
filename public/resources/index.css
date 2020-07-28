@@ -65,6 +65,10 @@ select {
     height: 100%;
     width: 50%;
     position: fixed;
-    top: 105px;
+    top: 0;
     right: 0;
+}
+
+.creature {
+    padding-left: 8px;
 }

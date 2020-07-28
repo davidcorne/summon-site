@@ -57,8 +57,8 @@ SummonSite.filterTable = function () {
 }
 
 SummonSite.showMonster = function (monster) {
-  const sidebar = document.getElementsByClassName('sidebar')[0]
-  sidebar.innerHTML = `
+  const creature = document.getElementsByClassName('creature')[0]
+  creature.innerHTML = `
   <h1 class="creature-name">
     <a>${monster.name}</a>
     <span>Creature ${monster.level}
