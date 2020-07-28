@@ -135,7 +135,7 @@ SummonSite.showMonster = function (monster) {
   <hr>
   <b>Speed</b>
   ${monster.speed.map(speed =>
-    `${speed.type} ${speed.amount} feet`
+    ` ${speed.type} ${speed.amount ? `${speed.amount} feet` : ''}`
   )}
   <br>
   <p>Melee</p>
