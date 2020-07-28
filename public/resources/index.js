@@ -96,14 +96,18 @@ SummonSite.renderTraits = function (traits) {
   )})` : ''}`
 }
 
+SummonSite.renderDamage = function (damage, plusDamage) {
+  return `<b>Damage</b> ${damage.formula} ${damage.type} 
+  ${plusDamage ? `plus ${plusDamage.map(damage =>
+    `${damage.formula ? damage.formula : ''} ${damage.type}`
+    )}` : ''}`
+}
+
 SummonSite.renderAttack = function (type, attack) {
   return `
   <b>${type}</b> ${SummonSite.actionCost(attack.action_cost)} ${attack.name} ${attack.to_hit} 
   ${SummonSite.renderTraits(attack.traits)},
-  <b>Damage</b> ${attack.damage.formula} ${attack.damage.type} 
-  ${attack.plus_damage ? `plus ${attack.plus_damage.map(damage =>
-    `${damage.formula ? damage.formula : ''} ${damage.type}`
-    )}` : ''}
+  ${attack.damage ? SummonSite.renderDamage(attack.damage, attack.plus_damage) : ''}
   <br>`
 }
 
