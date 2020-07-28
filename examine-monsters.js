@@ -5,8 +5,8 @@ const monsters = require('./data/summonable_monsters')
 if (require.main === module) {
   const master = {}
   for (const monster of monsters) {
-    if (monster.automatic_abilities) {
-      for (const ability of monster.automatic_abilities) {
+    if (monster.ritual_lists) {
+      for (const ability of monster.ritual_lists) {
         for (const key in ability) {
           if (ability[key]) {
             master[key] = monster.name
