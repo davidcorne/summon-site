@@ -96,3 +96,7 @@ select {
     background-color: lightgray;
     text-align: center;
 }
+
+.spellGroup {
+    padding-left: 15px;
+}

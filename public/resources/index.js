@@ -56,19 +56,36 @@ SummonSite.filterTable = function () {
   }
 }
 
+SummonSite.renderSpellLevel = function (group) {
+  const ordinalFunctor = levelString => {
+    const level = parseInt(levelString)
+    if (level <= 0) {
+      return 'Cantrip'
+    } else if (level === 1) {
+      return '1st'
+    } else if (level === 2) {
+      return '2nd'
+    } else if (level === 3) {
+      return '3rd'
+    } else {
+      return `${level}th`
+    }
+  }
+  return `<b>${ordinalFunctor(group.level)}${group.heightened_level ? ` (${ordinalFunctor(group.heightened_level)})` : ''}</b>`
+}
+
 SummonSite.renderSpellGroup = function (group) {
-  return `
-  <b>${group.level}${group.heightened_level ? ` (${group.heightened_level})` : ''}</b>
+  return `<div class="spellGroup">${SummonSite.renderSpellLevel(group)}
   ${group.spells.map(spell =>
     `${spell.name} ${spell.frequency ? `(${spell.frequency})` : ''}`
-    )}
-  `
+    ).join('')}
+  </div>`
 }
 
 SummonSite.renderSpellLists = function (spellLists) {
   return `<div>${spellLists.map(list =>
-    `<b>${list.name}</b> DC ${list.dc}; ${list.spell_groups.map(SummonSite.renderSpellGroup)}`
-    ).join('')}</div>`
+    `<b>${list.name}</b> DC ${list.dc}; ${list.spell_groups.map(SummonSite.renderSpellGroup).join('')}`
+    )}</div>`
 }
 
 SummonSite.actionCost = function (actionCost) {
