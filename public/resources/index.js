@@ -59,7 +59,9 @@ SummonSite.filterTable = function () {
 SummonSite.renderSpellLevel = function (group) {
   const ordinalFunctor = levelString => {
     const level = parseInt(levelString)
-    if (level <= 0) {
+    if (level === -1) {
+      return 'Constant'
+    } else if (level === 0) {
       return 'Cantrip'
     } else if (level === 1) {
       return '1st'
