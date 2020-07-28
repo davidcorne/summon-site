@@ -39,7 +39,7 @@ block content
         td 
           a(href=monster.url, target="_blank") #{monster.name}
         td #{monster.level}
-        td #{monster.traits}
+        td= monster.traits.join(', ')
         td 
           a(onclick="SummonSite.showMonster(" + JSON.stringify(monster) + ")") 👁
         each spell in monster.summonSpells
