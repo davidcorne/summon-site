@@ -30,7 +30,7 @@ SummonSite.filterTable = function () {
   // From 1 to keep the headers
   for (let i = 1; i < table.length; ++i) {
     const row = table[i]
-    const dataColumns = row.getElementsByClassName('dataColumn')
+    const dataColumns = row.getElementsByClassName('spellColumn')
     let show = false
     // This seems fragile
     if (selectedSpell === 'All Spells') {

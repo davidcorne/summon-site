@@ -4,7 +4,6 @@ body {
 }
 
 .content {
-    max-width: 960px;
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -13,7 +12,7 @@ body {
     padding-left: 30px;
 }
 
-.dataColumn {
+.dataColumn, .spellColumn {
     display: none;
 }
 
@@ -52,4 +51,20 @@ th {
 select {
     padding: 5px;
     margin-right: 10px;
+}
+
+#monsterTable {
+    width: 50%;
+}
+
+.leftColumn {
+    width: 50%;
+}
+
+.sidebar {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    top: 105px;
+    right: 0;
 }
