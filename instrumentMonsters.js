@@ -1,5 +1,6 @@
 'use strict'
 const fs = require('fs')
+const yaml = require('js-yaml')
 
 const spellData = require('./spellData')
 
@@ -53,8 +54,9 @@ const writeInstrumentedMonsters = function (monsters, path, callback) {
     callback(error, instrumentedMonsters.length)
   })
 }
-
+/* eslint-disable no-unused-vars */
 const instrumentScrapedMonsters = function () {
+/* eslint-enable no-unused-vars */
   const monsters = require('./data/all_monsters')
   writeInstrumentedMonsters(monsters, './data/summonable_monsters.json', function (error, numberOfWrittenMonsters) {
     if (error) {
@@ -64,8 +66,29 @@ const instrumentScrapedMonsters = function () {
   })
 }
 
+const loadYAMLMonsters = function (callback) {
+  fs.readFile('data/monsters.yaml', function (error, contents) {
+    if (error) {
+      throw error
+    }
+    const data = yaml.safeLoad(contents)
+    callback(data.monsters)
+  })
+}
+
+const instrumentYAMLMonsters = function () {
+  loadYAMLMonsters(monsters => {
+    writeInstrumentedMonsters(monsters, './data/summonable_monsters.json', function (error, numberOfWrittenMonsters) {
+      if (error) {
+        throw error
+      }
+      console.log(numberOfWrittenMonsters + ' summonable monsters written')
+    })
+  })
+}
+
 module.exports.writeInstrumentedMonsters = writeInstrumentedMonsters
 
 if (require.main === module) {
-  instrumentScrapedMonsters()
+  instrumentYAMLMonsters()
 }
