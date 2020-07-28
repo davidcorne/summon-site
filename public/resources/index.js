@@ -141,13 +141,13 @@ SummonSite.showMonster = function (monster) {
     : ''}
   ${monster.resistances ? `<b>Resistances</b> 
     ${monster.resistances.map(resistance =>
-      ` ${resistance.type} ${resistance.amount}`
+      ` ${resistance.type} ${resistance.amount ? resistance.amount : ''}`
       )}
     `
     : ''}
   ${monster.weaknesses ? `<b>Weaknesses</b> 
     ${monster.weaknesses.map(weakness =>
-      ` ${weakness.type} ${weakness.amount}`
+      ` ${weakness.type} ${weakness.amount ? weakness.amount : ''}`
       )}
     `
     : ''}
