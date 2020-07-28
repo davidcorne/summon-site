@@ -71,9 +71,34 @@ SummonSite.renderSpellLists = function (spellLists) {
     ).join('')}`
 }
 
+SummonSite.actionCost = function (actionCost) {
+  let url = ''
+  if (actionCost === 'Free Action') {
+    url = 'free-action'
+  } else if (actionCost === 'None') {
+    url = 'no-action'
+  } else if (actionCost === 'One Action') {
+    url = 'one-action'
+  } else if (actionCost === 'Two Action') {
+    url = 'two-action'
+  } else if (actionCost === 'Three Action') {
+    url = 'three-action'
+  } else if (actionCost === 'Reaction') {
+    url = 'reaction'
+  }
+  return `<a>${url}</a>`
+}
+
 SummonSite.renderMelee = function (melee) {
   return `
-  <b>Melee</b> ${melee.name}
+  <b>Melee</b> ${SummonSite.actionCost(melee.action_cost)} ${melee.name} ${melee.to_hit} 
+  ${melee.traits ? `(${melee.traits.map(trait =>
+    `${trait}`
+  )})` : ''},
+  <b>Damage</b> ${melee.damage.formula} ${melee.damage.type} 
+  ${melee.plus_damage ? `plus ${melee.plus_damage.map(damage =>
+    `${damage.formula ? damage.formula : ''} ${damage.type}`
+    )}` : ''}
   <br>`
 }
 
