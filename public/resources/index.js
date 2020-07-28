@@ -128,7 +128,7 @@ SummonSite.renderAbility = function (ability) {
     <br>`
 }
 
-SummonSite.renderSenseAbilities = function (senseAbilities) {
+SummonSite.renderAbilities = function (senseAbilities) {
   return `${senseAbilities.map(SummonSite.renderAbility).join('')}`
 }
 
@@ -175,7 +175,7 @@ SummonSite.showMonster = function (monster) {
   <b>Cha</b>
   ${monster.ability_mods.cha_mod}
   <br>
-  ${monster.sense_abilities ? SummonSite.renderSenseAbilities(monster.sense_abilities) : ''}
+  ${monster.sense_abilities ? SummonSite.renderAbilities(monster.sense_abilities) : ''}
   ${monster.items ? `<b>Items</b> 
     ${monster.items.map(item =>
       ` ${item}`
@@ -212,7 +212,7 @@ SummonSite.showMonster = function (monster) {
       )}
     `
     : ''}
-  ${monster.automatic_abilities ? `<br>${SummonSite.renderSenseAbilities(monster.automatic_abilities)}` : ''}
+  ${monster.automatic_abilities ? `<br>${SummonSite.renderAbilities(monster.automatic_abilities)}` : ''}
   <hr>
   <b>Speed</b>
   ${monster.speed.map(speed =>
