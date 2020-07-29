@@ -103,11 +103,11 @@ select {
 }
 
 .monsterName {
-    flex-basis: 70%;
+    flex: 1;
 }
 
 .monsterType {
-    flex-basis: 50%;
+    flex: 1;
 }
 
 .creature {
