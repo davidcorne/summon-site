@@ -180,6 +180,7 @@ SummonSite.showMonster = function (monster) {
     <a>${monster.name}</a>
     <span class="monsterType">${monster.type} ${monster.level}
   </h1>
+  <div class="monsterBody">
   <div class="traits">
     ${monster.traits.map(trait =>
       `<span>${trait}</span>`).join('')}
@@ -271,6 +272,7 @@ SummonSite.showMonster = function (monster) {
   <hr>
   <h3>${monster.name}</h3>
   ${monster.description}
+  </div>
   `
 }
 
