@@ -185,9 +185,9 @@ SummonSite.showMonster = function (monster) {
   sidebar.style.display = 'block'
   const creature = document.getElementsByClassName('creature')[0]
   creature.innerHTML = `
-  <h1 class="creature-name">
-    <div><a>${monster.name}</a></div>
-    <div><a class="monsterType">${monster.type} ${monster.level}</a></div>
+  <h1 class="creatureNameContainer">
+    <div class="monsterName"><a>${monster.name}</a></div>
+    <div class="monsterType"><a>${monster.type} ${monster.level}</a></div>
   </h1>
   <div class="monsterBody">
   <div class="topLine">

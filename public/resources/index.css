@@ -97,12 +97,17 @@ select {
     }
 }
 
-.creature-name {
+.creatureNameContainer {
     min-height: 5%;
+    display: flex;
+}
+
+.monsterName {
+    flex-basis: 70%;
 }
 
 .monsterType {
-    float: right;
+    flex-basis: 50%;
 }
 
 .creature {
