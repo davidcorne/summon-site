@@ -41,6 +41,19 @@ const instrumentMonsters = function (monsters) {
   return instrumentedMonsters
 }
 
+const addUrlToMonsters = function (monsters) {
+  const nethysMonsters = require('./data/all_monsters')
+  for (const monster of monsters) {
+    const result = nethysMonsters.find(nethysMonster => monster.name === nethysMonster.name)
+    if (result) {
+      monster.url = result.url
+    } else {
+      monster.url = ''
+      console.error(`Nethys monster not found for ${monster.name}`)
+    }
+  }
+}
+
 /**
  * Function to instrument then write an array of monsters.
  *
@@ -50,10 +63,12 @@ const instrumentMonsters = function (monsters) {
  */
 const writeInstrumentedMonsters = function (monsters, path, callback) {
   const instrumentedMonsters = instrumentMonsters(monsters)
+  addUrlToMonsters(monsters)
   fs.writeFile(path, JSON.stringify(instrumentedMonsters), function (error) {
     callback(error, instrumentedMonsters.length)
   })
 }
+
 /* eslint-disable no-unused-vars */
 const instrumentScrapedMonsters = function () {
 /* eslint-enable no-unused-vars */
