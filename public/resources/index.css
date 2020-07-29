@@ -53,16 +53,13 @@ select {
     margin-right: 10px;
 }
 
-#monsterTable {
-    width: 50%;
-}
-
 .leftColumn {
     width: 50%;
     overflow: scroll;
 }
 
 .sidebar {
+    display: none;
     height: 100%;
     position: fixed;
     top: 0;
@@ -85,12 +82,18 @@ select {
         width: 100%;
         max-width: 100%;
     }
+    #monsterTable {
+        width: 100%;
+    }
 }
 
 @media screen and (min-width: 1180px) {
     .sidebar {
         width: 49%;
         max-width: 50%;
+    }
+    #monsterTable {
+        width: 50%;
     }
 }
 
@@ -128,6 +131,14 @@ select {
     padding: 2px;
     background-color: lightgray;
     text-align: center;
+}
+
+.topLine {
+    display: inline;
+}
+
+#closeButton {
+    float: right;
 }
 
 .spellGroup {

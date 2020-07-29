@@ -173,17 +173,29 @@ SummonSite.renderAbilities = function (senseAbilities) {
   return `${senseAbilities.map(SummonSite.renderAbility).join('')}`
 }
 
+SummonSite.hideMonster = function () {
+  const sidebar = document.getElementsByClassName('sidebar')[0]
+  sidebar.style.display = 'none'
+  const creature = document.getElementsByClassName('creature')[0]
+  creature.innerHTML = ''
+}
+
 SummonSite.showMonster = function (monster) {
+  const sidebar = document.getElementsByClassName('sidebar')[0]
+  sidebar.style.display = 'block'
   const creature = document.getElementsByClassName('creature')[0]
   creature.innerHTML = `
   <h1 class="creature-name">
-    <a>${monster.name}</a>
-    <span class="monsterType">${monster.type} ${monster.level}</span>
+    <div><a>${monster.name}</a></div>
+    <div><a class="monsterType">${monster.type} ${monster.level}</a></div>
   </h1>
   <div class="monsterBody">
-  <div class="traits">
-    ${monster.traits.map(trait =>
-      `<span>${trait}</span>`).join('')}
+  <div class="topLine">
+    <div class="traits">
+      ${monster.traits.map(trait =>
+        `<span>${trait}</span>`).join('')}
+      <button id="closeButton" onclick='SummonSite.hideMonster()' aria-label="Close ${monster.type} Box">×</button>
+    </div>
   </div>
   <div><b>Source</b>
     ${monster.source.map(source =>
