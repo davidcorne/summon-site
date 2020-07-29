@@ -86,7 +86,7 @@ SummonSite.renderSpellGroup = function (group) {
 
 SummonSite.renderSpellLists = function (spellLists) {
   return `<div>${spellLists.map(list =>
-    `<b>${list.name}</b> DC ${list.dc}; ${list.spell_groups.map(SummonSite.renderSpellGroup).join('')}`
+    `<b>${list.name}</b> ${list.dc ? `DC ${list.dc};` : ''} ${list.spell_groups.map(SummonSite.renderSpellGroup).join('')}`
     )}</div>`
 }
 
