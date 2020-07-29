@@ -5,7 +5,9 @@ block scripts
     script(src="/public/resources/sorttable.js")
 
 block content
-
+  h1
+    a(href='/') Summon Site
+    
   div.table-filters
     select(onchange="SummonSite.filterTable()")#spellSelector
       option All Spells

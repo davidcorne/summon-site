@@ -1,6 +1,8 @@
 body {
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     margin: 0;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 .content {
@@ -59,14 +61,18 @@ select {
 
 .leftColumn {
     width: 50%;
+    overflow: scroll;
 }
 
 .sidebar {
     height: 100%;
-    width: 50%;
+    width: 49%;
+    max-width: 50%;
     position: fixed;
     top: 0;
     right: 0;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .creature {
