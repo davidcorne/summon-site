@@ -44,6 +44,10 @@ table, th, td {
     text-align: left;
 }
 
+tr:hover {
+    background-color: lightyellow;
+}
+
 th {
     background-color: lightgray;
 }
