@@ -37,8 +37,7 @@ block content
       tr(onclick="SummonSite.showMonster(" + JSON.stringify(monster) + ")")
         //- All spell levels should be the same, use the first one.
         td.spellLevel #{monster.summonSpells[0].level}
-        td 
-          a(href=monster.url, target="_blank") #{monster.name}
+        td #{monster.name}
         td #{monster.level}
         td= monster.traits.join(', ')
         each spell in monster.summonSpells

@@ -186,8 +186,8 @@ SummonSite.showMonster = function (monster) {
   const creature = document.getElementsByClassName('creature')[0]
   creature.innerHTML = `
   <h1 class="creatureNameContainer">
-    <div class="monsterName"><a>${monster.name}</a></div>
-    <div class="monsterType"><a>${monster.type} ${monster.level}</a></div>
+    <div class="monsterName"><a ${monster.url ? `href="${monster.url}"` : ''} target="_blank">${monster.name}</a></div>
+    <div class="monsterType">${monster.type} ${monster.level}</div>
   </h1>
   <div class="monsterBody">
   <div class="topLine">

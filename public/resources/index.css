@@ -27,9 +27,18 @@ h1 {
     font-size: 3.5em;
 }
 
-h1 > a {
+h1 a {
     text-decoration: none;
     color: black;
+}
+
+h1 a:hover {
+    text-decoration: underline;
+    color: blue;
+}
+
+h1 a:hover:visited {
+    color: rgb(85, 26, 139);
 }
 
 table {
