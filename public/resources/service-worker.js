@@ -1,4 +1,4 @@
-/* global self, caches, fetch */
+/* global self, caches, fetch, PRECACHE_URLS */
 
 // Names of the two caches used in this version of the service worker.
 // Change to v2, etc. when you update any of the local resources, which will
@@ -7,17 +7,6 @@ const PRECACHE = 'precache-v1'
 const RUNTIME = 'runtime'
 
 // A list of local resources we always want to be cached.
-const PRECACHE_URLS = [
-  '/',
-  'public/resources/index.css',
-  'public/resources/index.js',
-  'public/resources/sorttable.js',
-  'public/images/FreeAction.png',
-  'public/images/OneAction.png',
-  'public/images/Reaction.png',
-  'public/images/ThreeActions.png',
-  'public/images/TwoActions.png'
-]
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {

@@ -15,7 +15,7 @@ let SERVICE_WORKER_DATA = null
 
 process.on('message', function (message) {
   log.debug(JSON.stringify(message, null, 4))
-  if (message.tag === 'service_workder_data') {
+  if (message.tag === 'service_worker_data') {
     SERVICE_WORKER_DATA = message.data
   } else {
     log.error('Unknown message: ' + JSON.stringify(message))
@@ -89,8 +89,18 @@ APP.get('/service-worker.js', function (request, response) {
     // Don't serve up a service worker in debug
     handle404(request, response, 'Don\'t want a service worker in debug')
   } else {
-    const filePath = path.join(__dirname, '/public/resources/service-worker.js')
-    servePath(filePath, request, response)
+    // Read the service worker, but put the project md5 into it and the list
+    // of public resources for it to cache.
+    fs.readFile('public/resources/service-worker.js', function (error, buffer) {
+      if (error) {
+        throw error
+      }
+      response.type('js')
+      response.send(`const md5 = '${SERVICE_WORKER_DATA.md5}'
+        PRECACHE_URLS=${JSON.stringify(SERVICE_WORKER_DATA.publicFileList)}
+        ${buffer}
+      `)
+    })
   }
 })
 

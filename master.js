@@ -21,7 +21,6 @@ const SERVICE_WORKER_DATA = {
 }
 
 cluster.on('online', function (worker) {
-  worker.process.send('load-search-index')
   worker.send({
     tag: 'service_worker_data',
     data: SERVICE_WORKER_DATA
