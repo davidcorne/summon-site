@@ -178,7 +178,7 @@ SummonSite.showMonster = function (monster) {
   creature.innerHTML = `
   <h1 class="creature-name">
     <a>${monster.name}</a>
-    <span class="monsterType">${monster.type} ${monster.level}
+    <span class="monsterType">${monster.type} ${monster.level}</span>
   </h1>
   <div class="monsterBody">
   <div class="traits">
