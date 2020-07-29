@@ -7,13 +7,38 @@ const config = require('./configuration')
 const log = require('./log').logger
 require('./error_notification')
 
+const SERVICE_WORKER_DATA = {
+  md5: '',
+  publicFileList: ['/',
+    'public/resources/index.css',
+    'public/resources/index.js',
+    'public/resources/sorttable.js',
+    'public/images/FreeAction.png',
+    'public/images/OneAction.png',
+    'public/images/Reaction.png',
+    'public/images/ThreeActions.png',
+    'public/images/TwoActions.png']
+}
+
+cluster.on('online', function (worker) {
+  worker.process.send('load-search-index')
+  worker.send({
+    tag: 'service_worker_data',
+    data: SERVICE_WORKER_DATA
+  })
+})
+
+const newWorker = function () {
+  cluster.fork()
+}
+
 const startWorkers = function () {
   const currentWorkers = Object.keys(cluster.workers).length
   // currentWorkers should always be 0, but it's worth checking.
   const workersToSetup = config.workers - currentWorkers
   log.info('Master cluster setting up ' + workersToSetup + ' workers')
   for (let i = 0; i < workersToSetup; i++) {
-    cluster.fork()
+    newWorker()
   }
 }
 
@@ -31,23 +56,13 @@ const setupCallbacks = function () {
                 ')'
     )
     log.info('Starting a new worker.')
-    cluster.fork()
+    newWorker()
   })
 }
 
 const setupServiceWorker = function () {
-  const serviceWorkerData = {
-    md5: '',
-    publicFileList: ['/',
-      'public/resources/index.css',
-      'public/resources/index.js',
-      'public/resources/sorttable.js',
-      'public/images/FreeAction.png',
-      'public/images/OneAction.png',
-      'public/images/Reaction.png',
-      'public/images/ThreeActions.png',
-      'public/images/TwoActions.png']
-  }
+  // If there are *any* files which changing could change the user behaviour,
+  // they should be added here.
   const privateFileList = [
     'configuration.js',
     'data/summonable_monsters.json',
@@ -80,8 +95,8 @@ const setupServiceWorker = function () {
     const content = fs.readFileSync(file)
     md5Array.push(md5(content))
   }
-  serviceWorkerData.md5 = md5(md5Array.join(''))
-  console.log(JSON.stringify(serviceWorkerData, null, 4))
+  SERVICE_WORKER_DATA.md5 = md5(md5Array.join(''))
+  console.log(JSON.stringify(SERVICE_WORKER_DATA, null, 4))
 }
 
 const start = function () {

@@ -11,6 +11,17 @@ const monsters = require('./data/summonable_monsters')
 const spellData = require('./spellData')
 require('./error_notification')
 
+let SERVICE_WORKER_DATA = null
+
+process.on('message', function (message) {
+  log.debug(JSON.stringify(message, null, 4))
+  if (message.tag === 'service_workder_data') {
+    SERVICE_WORKER_DATA = message.data
+  } else {
+    log.error('Unknown message: ' + JSON.stringify(message))
+  }
+})
+
 const APP = express()
 APP.set('port', config.port)
 
