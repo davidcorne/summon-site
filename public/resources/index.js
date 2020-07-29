@@ -140,6 +140,11 @@ SummonSite.renderAttack = function (type, attack) {
   </div>`
 }
 
+SummonSite.renderSpeed = function (speed) {
+  const speedDescriptor = speed.type === 'Land' ? '' : ` ${speed.type}`
+  return `${speedDescriptor} ${speed.amount ? `${speed.amount} feet` : ''}`
+}
+
 SummonSite.renderMelee = function (melee) {
   return SummonSite.renderAttack('Melee', melee)
 }
@@ -271,9 +276,7 @@ SummonSite.showMonster = function (monster) {
   ${monster.automatic_abilities ? `${SummonSite.renderAbilities(monster.automatic_abilities)}` : ''}
   <hr>
   <div><b>Speed</b>
-  ${monster.speed.map(speed =>
-    ` ${speed.type} ${speed.amount ? `${speed.amount} feet` : ''}`
-  )}
+  ${monster.speed.map(SummonSite.renderSpeed)}
   </div>
   ${monster.melee ? monster.melee.map(SummonSite.renderMelee).join('') : ''}
   ${monster.ranged ? monster.ranged.map(SummonSite.renderRanged).join('') : ''}
