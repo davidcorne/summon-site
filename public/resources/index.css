@@ -64,19 +64,34 @@ select {
 
 .sidebar {
     height: 100%;
-    width: 49%;
-    max-width: 50%;
     position: fixed;
     top: 0;
     right: 0;
     overflow: scroll;
     overflow-x: hidden;
+    z-index: 100;
+    background-color: white;
 }
 
 .monsterBody {
     border-left: black inset 1px;
     padding-left: 8px;
     min-height: 80%;
+}
+
+@media screen and (max-width: 1180px) {
+    /* Full screen the sidebar */
+    .sidebar {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+@media screen and (min-width: 1180px) {
+    .sidebar {
+        width: 49%;
+        max-width: 50%;
+    }
 }
 
 .creature-name {
