@@ -99,7 +99,7 @@ select {
 }
 
 .traits {
-    margin-bottom: 5px;
+    margin: 10px;
 }
 
 .traits > span {
