@@ -1,5 +1,7 @@
 'use strict'
 const cluster = require('cluster')
+const fs = require('fs')
+const md5 = require('md5')
 
 const config = require('./configuration')
 const log = require('./log').logger
@@ -33,8 +35,58 @@ const setupCallbacks = function () {
   })
 }
 
+const setupServiceWorker = function () {
+  const serviceWorkerData = {
+    md5: '',
+    publicFileList: ['/',
+      'public/resources/index.css',
+      'public/resources/index.js',
+      'public/resources/sorttable.js',
+      'public/images/FreeAction.png',
+      'public/images/OneAction.png',
+      'public/images/Reaction.png',
+      'public/images/ThreeActions.png',
+      'public/images/TwoActions.png']
+  }
+  const privateFileList = [
+    'configuration.js',
+    'data/summonable_monsters.json',
+    'error_notification.js',
+    'log.js',
+    'master.js',
+    'package.json',
+    'public/images/FreeAction.png',
+    'public/images/OneAction.png',
+    'public/images/Reaction.png',
+    'public/images/ThreeActions.png',
+    'public/images/TwoActions.png',
+    'public/resources/index.css',
+    'public/resources/index.js',
+    'public/resources/service-worker.js',
+    'public/resources/sorttable.js',
+    'scrape.js',
+    'server.js',
+    'spellData.js',
+    'template/404.pug',
+    'template/index.pug',
+    'template/layout.pug',
+    'template/sidebar.pug',
+    'test_data/Monsters.html',
+    'utest.js',
+    'worker.js'
+  ]
+  const md5Array = []
+  for (const file of privateFileList) {
+    const content = fs.readFileSync(file)
+    md5Array.push(md5(content))
+  }
+  serviceWorkerData.md5 = md5(md5Array.join(''))
+  console.log(JSON.stringify(serviceWorkerData, null, 4))
+}
+
 const start = function () {
   log.info(JSON.stringify(config, null, 4))
+  setupServiceWorker()
   setupCallbacks()
   startWorkers()
 }
