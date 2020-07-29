@@ -95,7 +95,6 @@ const setupServiceWorker = function () {
     md5Array.push(md5(content))
   }
   SERVICE_WORKER_DATA.md5 = md5(md5Array.join(''))
-  console.log(JSON.stringify(SERVICE_WORKER_DATA, null, 4))
 }
 
 const start = function () {
