@@ -116,7 +116,7 @@ SummonSite.renderTraits = function (traits) {
 }
 
 SummonSite.renderDamage = function (damage, plusDamage) {
-  return `<b>Damage</b> ${damage.formula} ${damage.type} 
+  return `<b>Damage</b> ${damage.formula} ${damage.type ? damage.type : ''} 
   ${plusDamage ? `plus ${plusDamage.map(damage =>
     `${damage.formula ? damage.formula : ''} ${damage.type}`
     )}` : ''}`
