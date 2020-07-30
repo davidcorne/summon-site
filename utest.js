@@ -5,9 +5,12 @@ const chai = require('chai')
 const assert = chai.assert
 const fs = require('fs')
 
+const monsters = require('./data/summonable_monsters')
+
 const spellDataModule = rewire('./spellData.js')
 const instrumentMonstersModule = rewire('./instrumentMonsters.js')
 const scrapeModule = rewire('./scrape.js')
+const clientModule = rewire('./public/resources/index.js')
 
 describe('Spell Data', function () {
   const normalSpellLevel = spellDataModule.__get__('normalSpellLevel')
@@ -127,5 +130,19 @@ describe('Scraper', function () {
       assert.strictEqual(monsters.length, 856)
       done()
     })
+  })
+})
+
+describe('ClientJS', function () {
+  const SummonSite = clientModule.__get__('SummonSite')
+  it('Monsters', function () {
+    const nulls = []
+    for (const monster of monsters) {
+      const html = SummonSite.renderCreature(monster)
+      if (html.includes(' null ')) {
+        nulls.push(monster.name)
+      }
+    }
+    assert.isEmpty(nulls, `The following monsters have nulls: ${nulls}`)
   })
 })

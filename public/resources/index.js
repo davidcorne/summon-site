@@ -189,8 +189,11 @@ SummonSite.showMonster = function (monster) {
   const sidebar = document.getElementsByClassName('sidebar')[0]
   sidebar.style.display = 'block'
   const creature = document.getElementsByClassName('creature')[0]
-  creature.innerHTML = `
-  <h1 class="creatureNameContainer">
+  creature.innerHTML = SummonSite.renderCreature(monster)
+}
+
+SummonSite.renderCreature = function (monster) {
+  return `<h1 class="creatureNameContainer">
     <div class="monsterName"><a ${monster.url ? `href="${monster.url}"` : ''} target="_blank">${monster.name}</a></div>
     <div class="monsterType">${monster.type} ${monster.level}</div>
   </h1>
@@ -291,7 +294,7 @@ SummonSite.showMonster = function (monster) {
   `
 }
 
-if ('serviceWorker' in navigator) {
+if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker.register('service-worker.js')
   })
