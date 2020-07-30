@@ -112,7 +112,7 @@ SummonSite.actionCost = function (actionCost) {
 SummonSite.renderTraits = function (traits) {
   return `${traits ? ` (${traits.map(trait =>
     `${trait}`
-  )})` : ''}`
+  ).join(', ')})` : ''}`
 }
 
 SummonSite.renderDamage = function (damage, plusDamage) {

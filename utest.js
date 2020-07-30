@@ -145,4 +145,8 @@ describe('ClientJS', function () {
     }
     assert.isEmpty(nulls, `The following monsters have nulls: ${nulls}`)
   })
+  it('Traits spacing', function () {
+    const traits = SummonSite.renderTraits(['agile', 'finesse'])
+    assert.strictEqual(traits, ' (agile, finesse)')
+  })
 })
