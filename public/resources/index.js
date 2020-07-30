@@ -110,7 +110,7 @@ SummonSite.actionCost = function (actionCost) {
 }
 
 SummonSite.renderTraits = function (traits) {
-  return `${traits ? `(${traits.map(trait =>
+  return `${traits ? ` (${traits.map(trait =>
     `${trait}`
   )})` : ''}`
 }
@@ -134,8 +134,7 @@ SummonSite.renderAttackBonus = function (bonus, traits) {
 
 SummonSite.renderAttack = function (type, attack) {
   return `
-  <div><b>${type}</b> ${SummonSite.actionCost(attack.action_cost)} ${attack.name} ${SummonSite.renderAttackBonus(attack.to_hit, attack.traits)}
-  ${SummonSite.renderTraits(attack.traits)},
+  <div><b>${type}</b> ${SummonSite.actionCost(attack.action_cost)} ${attack.name} ${SummonSite.renderAttackBonus(attack.to_hit, attack.traits)}${SummonSite.renderTraits(attack.traits)},
   ${attack.damage ? SummonSite.renderDamage(attack.damage, attack.plus_damage) : ''}
   </div>`
 }
